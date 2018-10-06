@@ -3,7 +3,7 @@
                class='CardLinkPlain__link'>
     <Card class='CardLinkPlain'
           raised
-          hoverable
+          zoomable
           translucent>
       <div class='CardLinkPlain__category'>
         <Sun class='CardLinkPlain__category-icon' />

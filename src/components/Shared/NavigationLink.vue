@@ -24,7 +24,7 @@ export default {
 <style lang='scss'>
 @import "@/styles/variables.scss";
 
-$navigation-link-size: 48px;
+$navigation-link-size: 42px;
 $navigation-link-size-padding: 0.375 * $navigation-link-size;
 $navigation-link-icon-size: $navigation-link-size -
   $navigation-link-size-padding;
