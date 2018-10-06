@@ -28,9 +28,13 @@ export default {
   flex-direction: column;
   height: 100%;
   overflow-y: auto;
+  // justify-content: center;
+  align-items: center;
 
   &__content {
     flex: 1 1 auto;
+    width: 100%;
+    max-width: 960px;
   }
 
   &__navigation {

@@ -1,23 +1,26 @@
 <template>
-  <Card class='CardLinkPlain'
-        raised
-        hoverable
-        translucent>
-    <div class='CardLinkPlain__category'>
-      <Sun class='CardLinkPlain__category-icon' />
-    </div>
-    <div class='CardLinkPlain__content'>
-      <div class='CardLinkPlain__title'>
-        {{ title }}
+  <router-link :to='{ name: "Sleep"}'
+               class='CardLinkPlain__link'>
+    <Card class='CardLinkPlain'
+          raised
+          hoverable
+          translucent>
+      <div class='CardLinkPlain__category'>
+        <Sun class='CardLinkPlain__category-icon' />
       </div>
-      <div class='CardLinkPlain__subtitle'>
-        {{ subtitle }}
+      <div class='CardLinkPlain__content'>
+        <div class='CardLinkPlain__title'>
+          {{ title }}
+        </div>
+        <div class='CardLinkPlain__subtitle'>
+          {{ subtitle }}
+        </div>
       </div>
-    </div>
-    <div class='CardLinkPlain__action'>
-      <Play class='CardLinkPlain__action-icon' />
-    </div>
-  </Card>
+      <div class='CardLinkPlain__action'>
+        <Play class='CardLinkPlain__action-icon' />
+      </div>
+    </Card>
+  </router-link>
 </template>
 
 1<script>
@@ -49,21 +52,41 @@ export default {
 @import "@/styles/variables.scss";
 
 .CardLinkPlain {
-  color: $color-grey;
   padding: 16px;
   display: flex;
   align-items: center;
+
+  &__link {
+    text-decoration: none;
+    color: $color-grey;
+
+    &:hover {
+      color: lighten($color-grey, 10%);
+
+      .CardLinkPlain__category-icon {
+        stroke: lighten($color-blue, 10%);
+      }
+
+      .CardLinkPlain__action-icon {
+        stroke: lighten($color-grey, 10%);
+      }
+    }
+  }
 
   &__category-icon {
     height: 48px;
     width: 48px;
     stroke: $color-blue;
+    transition: $swift-ease-out;
+    transition-property: stroke;
   }
 
   &__action-icon {
     height: 32px;
     width: 32px;
     stroke: $color-grey;
+    transition: $swift-ease-out;
+    transition-property: stroke;
   }
 
   &__content {
