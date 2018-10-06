@@ -49,5 +49,6 @@ export default {
 
 .Navigation {
   text-align: center;
+  margin: 16px 0;
 }
 </style>

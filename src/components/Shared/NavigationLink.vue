@@ -32,7 +32,7 @@ $navigation-link-spacing: $navigation-link-size * 0.25;
 
 .NavigationLink {
   display: inline-block;
-  margin: $navigation-link-spacing;
+  margin: 0 $navigation-link-spacing;
   text-align: center;
   text-decoration: none;
   color: $link-text-color;

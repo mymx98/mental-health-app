@@ -26,12 +26,13 @@ export default {
 .App {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  overflow-y: auto;
+  height: 100vh;
+  // height: 100%;
   // justify-content: center;
   align-items: center;
 
   &__content {
+    overflow-y: auto;
     flex: 1 1 auto;
     width: 100%;
     max-width: 960px;

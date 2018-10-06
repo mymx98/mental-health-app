@@ -26,6 +26,12 @@
         <div class='Sleep__item'>
           <SleepSessionCardLink imgSrc='https://i.imgur.com/ubAXme5.jpg' />
         </div>
+        <div class='Sleep__item'>
+          <SleepSessionCardLink imgSrc='https://i.imgur.com/ubAXme5.jpg' />
+        </div>
+        <div class='Sleep__item'>
+          <SleepSessionCardLink imgSrc='https://i.imgur.com/ubAXme5.jpg' />
+        </div>
       </div>
     </div>
   </div>
