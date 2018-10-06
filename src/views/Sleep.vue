@@ -1,37 +1,38 @@
 <template>
-  <div class='Sleep app-content-wrapper'>
+  <div class='Sleep'>
     <div class='Sleep__header'>
-      <div class='Sleep__header-title'>
+      <div class='Sleep__header-title app-gutter-spacing'>
         Sleep Stories
       </div>
-      <div class='Sleep__header-description'>
+      <div class='Sleep__header-description app-gutter-spacing'>
         Soothing betime stories to help youfall into a deep and natural sleep.
       </div>
-      <div class='Sleep__filter'>
-        Filter
-      </div>
-      <div class='Sleep__list'>
-        <div class='Sleep__item'
-             v-for='item in list'
-             :key='item.id'>
-          <SleepSessionCardLink :title='item.title'
-                                :subtitle='item.author'
-                                :duration='item.duration'
-                                :imgSrc='item.imgSrc' />
-        </div>
+      <div class='Sleep__filter app-gutter-spacing'>
+        <SleepFilter />
       </div>
     </div>
-  </div>
+    <div class='Sleep__list app-gutter-spacing'>
+      <div class='Sleep__item'
+           v-for='item in list'
+           :key='item.id'>
+        <SleepSessionCardLink :title='item.title'
+                              :subtitle='item.author'
+                              :duration='item.duration'
+                              :imgSrc='item.imgSrc' />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import SleepSessionCardLink from "@/components/SleepSessionCardLink";
+import SleepFilter from "@/components/SleepFilter";
 import Sleep from "@/api/Sleep";
 
 export default {
   name: "Sleep",
   components: {
+    SleepFilter,
     SleepSessionCardLink
   },
   data() {
@@ -48,7 +49,15 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "@/styles/variables.scss";
+
 .Sleep {
+  &__header {
+    background-color: $body-background-color-secondary;
+    padding: 24px 0;
+    margin-bottom: 24px;
+  }
+
   &__header-title {
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -67,6 +76,7 @@ export default {
   &__list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   &__item {

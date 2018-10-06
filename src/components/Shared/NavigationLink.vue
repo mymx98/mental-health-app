@@ -43,7 +43,7 @@ $navigation-link-spacing: $navigation-link-size * 0.25;
     border-radius: 100%;
     width: $navigation-link-size;
     height: $navigation-link-size;
-    border: 2px solid #3a4ed5;
+    border: 2px solid $color-violet;
     transition: $swift-ease-out;
     transition-property: border;
     display: flex;
@@ -55,7 +55,7 @@ $navigation-link-spacing: $navigation-link-size * 0.25;
     color: $link-text-color--hover;
 
     .NavigationLink__icon-wrapper {
-      border: 2px solid #3acfd5;
+      border: 2px solid $color-aqua;
     }
 
     svg {
@@ -71,7 +71,7 @@ $navigation-link-spacing: $navigation-link-size * 0.25;
     }
 
     .NavigationLink__icon-wrapper {
-      border: 2px solid #3acfd5;
+      border: 2px solid $color-aqua;
     }
   }
 

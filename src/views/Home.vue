@@ -1,5 +1,5 @@
 <template>
-  <div class="Home app-content-wrapper">
+  <div class="Home app-gutter-spacing">
     <div class='Home__content'>
       <div class='Home__app-logo-wrapper'>
         <img alt="App Logo" src="@/assets/app-logo.png" class='Home__app-logo'/>
