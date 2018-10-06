@@ -76,6 +76,7 @@ export default {
 
   &__title {
     font-size: 1.2em;
+    margin-bottom: 4px;
   }
 
   &__subtitle {

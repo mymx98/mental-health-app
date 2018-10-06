@@ -12,6 +12,7 @@
 <script>
 import GuidedSessionList from "@/components/GuidedSessionList";
 import CardLinkPlain from "@/components/CardLinkPlain";
+import GuidedSession from "@/api/GuidedSession";
 
 export default {
   name: "Home",
@@ -21,28 +22,19 @@ export default {
   },
   data() {
     return {
-      list: [
-        {
-          id: 1,
-          title: "Daily Calm",
-          description: "Oct 6 - Non-Attachment"
-        }
-      ]
+      list: []
     };
+  },
+  async created() {
+    const result = await GuidedSession.getMostRecentGuidedSession();
+
+    this.list = [result.data.data];
   }
 };
 </script>
 
 <style lang='scss' scoped>
 .Home {
-  // display: flex;
-  // justify-content: center;
-  // width: 100%;
-
-  &__content {
-    // width: 100%;
-  }
-
   &__app-logo-wrapper {
     text-align: center;
   }
