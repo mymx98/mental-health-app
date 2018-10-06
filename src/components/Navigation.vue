@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import ControlIcon from "@/components/Shared/ControlIcon";
 import NavigationLink from "@/components/Shared/NavigationLink";
 import Home from "@/assets/icons/Home.svg";
 import Moon from "@/assets/icons/Moon.svg";
@@ -36,7 +35,6 @@ export default {
   name: "Navigation",
   components: {
     NavigationLink,
-    ControlIcon,
     Home,
     Moon,
     Target,
