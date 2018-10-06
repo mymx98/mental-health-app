@@ -2,16 +2,10 @@
   <router-link :to='{ name: "Sleep"}'
                class='SleepSessionCardLink__link'>
     <Card class='SleepSessionCardLink'
+          :style='cardStyles'
           raised
           zoomable
           translucent>
-      <!-- <div v-if='imgSrc'
-           class='SleepSessionCardLink__image-wrapper'>
-        <img :src='imgSrc' class='SleepSessionCardLink__image'/>
-      </div> -->
-      <!-- <div class='SleepSessionCardLink__category'>
-        <Sun class='SleepSessionCardLink__category-icon' />
-      </div> -->
       <div class='SleepSessionCardLink__mask'></div>
       <div class='SleepSessionCardLink__content'>
         <div class='SleepSessionCardLink__title'>
@@ -62,6 +56,11 @@ export default {
   computed: {
     formattedDuration() {
       return `${Math.round(this.duration / 60)} min`;
+    },
+    cardStyles() {
+      return {
+        backgroundImage: `url('${this.imgSrc}'`
+      };
     }
   }
 };
@@ -75,7 +74,6 @@ export default {
   display: flex;
   align-items: center;
   position: relative;
-  background-image: url("https://i.imgur.com/ubAXme5.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
