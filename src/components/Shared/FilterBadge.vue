@@ -1,6 +1,7 @@
 <template>
   <button type='button'
           class='FilterBadge'
+          @click='$emit("click")'
           :class='classes'>
     <slot />
   </button>
