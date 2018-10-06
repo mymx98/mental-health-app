@@ -1,7 +1,10 @@
 <template>
   <div class='App'>
     <div class='App__content'>
-      <router-view />
+      <transition name="route"
+                  mode="out-in">
+        <router-view :key='$route.path' />
+      </transition>
     </div>
     <Navigation class='App__navigation' />
   </div>

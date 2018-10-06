@@ -18,3 +18,16 @@ body {
 .app-content-wrapper {
   padding: 24px;
 }
+
+//
+// Router Transitions
+//
+.route-enter-active,
+.route-leave-active {
+  transition: opacity 0.15s $swift-ease-out-timing-function;
+}
+
+.route-enter,
+.route-leave-to {
+  opacity: 0;
+}
