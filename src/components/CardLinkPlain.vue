@@ -53,7 +53,6 @@ export default {
   padding: 16px;
   display: flex;
   align-items: center;
-  width: 100%;
 
   &__category-icon {
     height: 48px;
@@ -68,7 +67,7 @@ export default {
   }
 
   &__content {
-    margin-left: 16px;
+    margin: 0 16px;
   }
 
   &__action {
