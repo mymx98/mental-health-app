@@ -1,0 +1,15 @@
+@import "node_modules/normalize.css/normalize";
+@import "./variables.scss";
+
+html,
+body {
+  height: 100%;
+  background-color: #0b182a;
+}
+
+body {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $text-color;
+}
