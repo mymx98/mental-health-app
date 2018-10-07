@@ -1,18 +1,17 @@
 <template>
-  <div class='More'>
-    <!-- <AppLink :to="{ name: 'Breathe'}"
+  <div class='MoreNavigation'>
+    <AppLink :to="{ name: 'Breathe'}"
              label='Breathe'>
       <Home slot='icon' />
     </AppLink>
-    <AppLink :to="{ name: 'Scenes'}"
+    <AppLink :to="{ name: 'Scene'}"
              label='Scenes'>
       <Home slot='icon' />
     </AppLink>
     <AppLink :to="{ name: 'Profile'}"
              label='Profile'>
       <Home slot='icon' />
-    </AppLink> -->
-    <router-view />
+    </AppLink>
   </div>
 </template>
 
@@ -21,7 +20,7 @@ import AppLink from "@/components/Shared/AppLink";
 import Home from "@/assets/icons/Home.svg";
 
 export default {
-  name: "More",
+  name: "MoreNavigation",
   components: {
     AppLink,
     Home
@@ -30,7 +29,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.More {
+.MoreNavigation {
   //
 }
 </style>

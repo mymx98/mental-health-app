@@ -2,11 +2,13 @@
   <div class="Home app-gutter-spacing">
     <div class='Home__content'>
       <div class='Home__app-logo-wrapper'>
-        <img alt="App Logo" src="@/assets/app-logo.png" class='Home__app-logo'/>
+        <img alt="App Logo"
+             src="@/assets/app-logo.png"
+             class='Home__app-logo' />
       </div>
-        <GuidedSessionList :list='list' />
-      </div>
+      <GuidedSessionList :list='list' />
     </div>
+  </div>
 </template>
 
 <script>
@@ -37,6 +39,7 @@ export default {
 .Home {
   &__app-logo-wrapper {
     text-align: center;
+    margin-top: 24px;
   }
 
   &__app-logo {

@@ -32,7 +32,30 @@ export default new Router({
     {
       path: "/more",
       name: "More",
-      component: () => import("./views/More.vue")
+      redirect: "/more/navigation",
+      component: () => import("./views/More.vue"),
+      children: [
+        {
+          path: "navigation",
+          name: "MoreNavigation",
+          component: () => import("./views/MoreNavigation.vue")
+        },
+        {
+          path: "breathe",
+          name: "Breathe",
+          component: () => import("./views/Breathe.vue")
+        },
+        {
+          path: "scene",
+          name: "Scene",
+          component: () => import("./views/Scene.vue")
+        },
+        {
+          path: "profile",
+          name: "Profile",
+          component: () => import("./views/Profile.vue")
+        }
+      ]
     }
   ]
 });
