@@ -27,6 +27,8 @@ export default {
       list: []
     };
   },
+  // backgroundImage: `url('${this.imgSrc}'`
+
   async created() {
     const result = await GuidedSession.getMostRecentGuidedSession();
 
@@ -37,6 +39,11 @@ export default {
 
 <style lang='scss' scoped>
 .Home {
+  height: 100%;
+  background-image: url("https://i.imgur.com/AVcklW7.jpg");
+  background-size: cover;
+  background-position: center;
+
   &__app-logo-wrapper {
     text-align: center;
     margin-top: 24px;

@@ -49,6 +49,19 @@ export default {
 
 .Navigation {
   text-align: center;
-  margin: 16px 0;
+  // margin: 16px 0;
+  // padding: 64px 0 16px;
+  // padding: 96px 0 16px;
+  padding: 128px 0 16px;
+  width: 100%;
+
+  // background: linear-gradient(155deg, #3acfd5 0%, #2989d8 50%, #3a4ed5 100%);
+
+  // background-image: linear-gradient(
+  //   180deg,
+  //   rgba(0, 0, 0, 0) 0%,
+  //   rgba(0, 0, 0, 1) 100%
+  // );
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
 }
 </style>

@@ -4,6 +4,7 @@
                    :key='item.id'
                    class='GuidedSessionList__item'
                    :title='item.category'
+                   @click.native='itemClicked(item)'
                    :subtitle='getDescription(item)'>
     </CardLinkPlain>
   </div>
@@ -30,6 +31,9 @@ export default {
     },
     formattedDate(date) {
       return format(date, "MMM MM");
+    },
+    itemClicked(item) {
+      console.log("itemClicked", item);
     }
   }
 };

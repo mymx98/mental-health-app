@@ -1,45 +1,88 @@
 <template>
   <div class='App'>
-    <div class='App__content'>
+    <div class='App__content'
+         :class='contentClasses'>
       <transition name="route"
                   mode="out-in">
         <router-view :key='$route.path' />
       </transition>
     </div>
-    <Navigation class='App__navigation' />
+    <div class='App__navigation'>
+      <!-- <Navigation class='App__navigation' /> -->
+      <Navigation class='App__navigation' />
+    </div>
+    <div class='App__media-player-container'>
+      <MediaPlayer v-if='mediaPlayerVisible'
+                   @close='mediaPlayerClose' />
+    </div>
   </div>
 </template>
 
 <script>
 import Navigation from "@/components/Navigation";
+import MediaPlayer from "@/components/MediaPlayer";
+import { mapGetters } from "vuex";
 
 export default {
   name: "App",
   components: {
-    Navigation
+    Navigation,
+    MediaPlayer
+  },
+  computed: {
+    ...mapGetters({
+      blur: "blur",
+      mediaPlayerVisible: "mediaPlayerVisible"
+    }),
+    contentClasses() {
+      return {
+        "App__content--blur": this.blur
+      };
+    }
+  },
+  methods: {
+    mediaPlayerClose() {
+      this.$store.dispatch("mediaPlayerVisible", false);
+      this.$store.dispatch("blur", false);
+    }
   }
 };
 </script>
 
 
 <style lang="scss">
+@import "@/styles/variables.scss";
+
 .App {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  // height: 100%;
+  // display: flex;
+  // flex-direction: column;
+  // height: 100vh;
+  height: 100%;
   // justify-content: center;
-  align-items: center;
+  // align-items: center;
 
   &__content {
-    overflow-y: auto;
-    flex: 1 1 auto;
-    width: 100%;
-    max-width: 960px;
+    // overflow-y: auto;
+    // flex: 1 1 auto;
+    // width: 100%;
+    // max-width: 960px;
+    height: 100%;
+    // transition: $swift-ease-out;
+    // transition-property: filter;
+
+    &--blur {
+      filter: blur(5px);
+    }
   }
 
+  // &__navigation {
+  //   flex: 0;
+  // }
+
   &__navigation {
-    flex: 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
   }
 }
 </style>

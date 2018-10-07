@@ -18,7 +18,8 @@
         <SleepSessionCardLink :title='item.title'
                               :subtitle='item.author'
                               :duration='item.duration'
-                              :imgSrc='item.imgSrc' />
+                              :imgSrc='item.imgSrc'
+                              @click.native='itemClicked(item)' />
       </div>
     </div>
   </div>
@@ -39,6 +40,13 @@ export default {
     return {
       list: []
     };
+  },
+  methods: {
+    itemClicked(item) {
+      // console.log("itemClicked", item);
+      this.$store.dispatch("mediaPlayerVisible", true);
+      this.$store.dispatch("blur", true);
+    }
   },
   async created() {
     const response = await Sleep.getSleepStories();
