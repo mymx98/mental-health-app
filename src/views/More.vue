@@ -31,6 +31,6 @@ export default {
 
 <style lang='scss' scoped>
 .More {
-  //
+  height: 100%;
 }
 </style>
