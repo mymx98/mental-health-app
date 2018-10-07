@@ -3,7 +3,7 @@
     <TransitionSlideFromBottom>
       <div class='MediaPlayer'
            v-if='visible'>
-        <FocusLock>
+        <FocusLock returnFocus>
           <h2>MediaPlayer</h2>
           <slot />
           <button type='button'
