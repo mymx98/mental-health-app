@@ -36,10 +36,16 @@ export default {
   padding: 6px 16px;
   cursor: pointer;
   color: $text-color;
-  border: none;
   transition: $swift-ease-out;
+  border: none;
   transition-property: color, transform;
   white-space: nowrap;
+  margin: 3px;
+
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 5px rgb(77, 144, 254);
+  }
 
   &:hover {
     color: darken($text-color, 10%);

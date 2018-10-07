@@ -74,7 +74,6 @@ export default {
   display: flex;
   align-items: center;
   position: relative;
-  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   height: 200px;
