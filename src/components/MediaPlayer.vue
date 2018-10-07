@@ -3,13 +3,14 @@
     <TransitionSlideFromBottom>
       <div class='MediaPlayer'
            v-if='visible'>
-        <h2>MediaPlayer</h2>
-        <!-- <slot name='info' /> -->
-        <slot />
-        <button type='button'
-                @click='close'>
-          Close
-        </button>
+        <FocusLock>
+          <h2>MediaPlayer</h2>
+          <slot />
+          <button type='button'
+                  @click='close'>
+            Close
+          </button>
+        </FocusLock>
       </div>
     </TransitionSlideFromBottom>
   </portal>
@@ -17,11 +18,13 @@
 
 <script>
 import TransitionSlideFromBottom from "@/components/Shared/TransitionSlideFromBottom";
+import FocusLock from "vue-focus-lock";
 
 export default {
   name: "MediaPlayer",
   components: {
-    TransitionSlideFromBottom
+    TransitionSlideFromBottom,
+    FocusLock
   },
   props: {
     visible: {
