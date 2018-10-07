@@ -19,9 +19,14 @@
         <AudioCardLink :title='item.title'
                        :subtitle='item.author'
                        :duration='item.duration'
-                       :imgSrc='item.imgSrc' />
+                       :imgSrc='item.imgSrc'
+                       @click.native='itemClicked(item)' />
       </div>
     </div>
+    <MediaPlayer :visible='playerVisible'
+                 @close='closePlayer'>
+      Music
+    </MediaPlayer>
   </div>
 </template>
 
@@ -30,13 +35,15 @@ import AudioCardLink from "@/components/Shared/AudioCardLink";
 import FilterList from "@/components/Shared/FilterList";
 import GuidedSessionList from "@/components/GuidedSessionList";
 import Music from "@/api/Music";
+import MediaPlayer from "@/components/MediaPlayer";
 
 export default {
   name: "Music",
   components: {
     AudioCardLink,
     FilterList,
-    GuidedSessionList
+    GuidedSessionList,
+    MediaPlayer
     // MusicFilter,
     // MusicSessionCardLink
   },
@@ -69,13 +76,27 @@ export default {
           active: false
         }
       ],
-      list: []
+      list: [],
+      playerVisible: false
     };
   },
   methods: {
     filterClicked(item) {
       this.filterList.forEach(x => (x.active = false));
       item.active = true;
+    },
+    itemClicked(item) {
+      // console.log("itemClicked", item);
+      this.$store.dispatch("navigationVisible", false);
+      // this.$store.dispatch("mediaPlayerVisible", true);
+      this.playerVisible = true;
+      this.$store.dispatch("blur", true);
+    },
+    closePlayer() {
+      this.$store.dispatch("blur", false);
+      this.playerVisible = false;
+      this.$store.dispatch("navigationVisible", true);
+      // this.$store.dispatch("mediaPlayerVisible", true);
     }
   },
   async created() {

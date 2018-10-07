@@ -1,6 +1,6 @@
 <template>
-  <router-link :to='{ name: "Sleep"}'
-               class='AudioCardLink__link'>
+  <button class='AudioCardLink__link button--no-style'
+          type='button'>
     <Card class='AudioCardLink'
           :style='cardStyles'
           raised
@@ -20,7 +20,7 @@
         </div>
       </div>
     </Card>
-  </router-link>
+  </button>
 </template>
 
 1<script>
@@ -103,6 +103,7 @@ export default {
     text-decoration: none;
     // color: $color-grey;
     color: $color-white;
+    // outline: inherit;
 
     // &:hover {
     //   color: lighten($color-grey, 10%);

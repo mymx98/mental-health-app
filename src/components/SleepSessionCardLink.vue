@@ -1,6 +1,5 @@
 <template>
-  <router-link :to='{ name: "Sleep"}'
-               class='SleepSessionCardLink__link'>
+  <button class='AudioCardLink__link button--no-style'>
     <Card class='SleepSessionCardLink'
           :style='cardStyles'
           raised
@@ -20,7 +19,7 @@
         </div>
       </div>
     </Card>
-  </router-link>
+  </button>
 </template>
 
 1<script>

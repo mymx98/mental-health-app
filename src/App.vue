@@ -11,10 +11,11 @@
       <Navigation class='App__navigation'
                   v-if='navigationVisible' />
     </div>
-    <div class='App__media-player-container'>
+    <!-- <div class='App__media-player-container'>
       <MediaPlayer v-if='mediaPlayerVisible'
                    @close='mediaPlayerClose' />
-    </div>
+    </div> -->
+    <portal-target name="media-player" />
   </div>
 </template>
 
@@ -68,9 +69,10 @@ export default {
     // flex: 1 1 auto;
     // width: 100%;
     // max-width: 960px;
-    height: 100%;
+    // height: 100%;
     // transition: $swift-ease-out;
     // transition-property: filter;
+    margin-bottom: 160px;
 
     &--blur {
       filter: blur(5px);

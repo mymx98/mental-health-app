@@ -25,6 +25,10 @@
                                  :imgSrc='item.imgSrc' /> -->
       </div>
     </div>
+    <MediaPlayer :visible='playerVisible'
+                 @close='closePlayer'>
+      Meditate
+    </MediaPlayer>
   </div>
 </template>
 
@@ -33,6 +37,7 @@
 import FilterList from "@/components/Shared/FilterList";
 import GuidedSessionList from "@/components/GuidedSessionList";
 import GuidedSession from "@/api/GuidedSession";
+import MediaPlayer from "@/components/MediaPlayer";
 
 // import Meditate from "@/api/Meditate";
 
@@ -40,12 +45,14 @@ export default {
   name: "Meditate",
   components: {
     FilterList,
-    GuidedSessionList
+    GuidedSessionList,
+    MediaPlayer
     // MeditateFilter,
     // MeditateSessionCardLink
   },
   data() {
     return {
+      playerVisible: false,
       filterList: [
         {
           filter: "all",
@@ -80,6 +87,19 @@ export default {
     filterClicked(item) {
       this.filterList.forEach(x => (x.active = false));
       item.active = true;
+    },
+    itemClicked(item) {
+      // console.log("itemClicked", item);
+      this.$store.dispatch("navigationVisible", false);
+      // this.$store.dispatch("mediaPlayerVisible", true);
+      this.playerVisible = true;
+      this.$store.dispatch("blur", true);
+    },
+    closePlayer() {
+      this.$store.dispatch("blur", false);
+      this.playerVisible = false;
+      this.$store.dispatch("navigationVisible", true);
+      // this.$store.dispatch("mediaPlayerVisible", true);
     }
   },
   async created() {

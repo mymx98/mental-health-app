@@ -1,13 +1,18 @@
 <template>
-  <TransitionSlideFromBottom>
-    <div class='MediaPlayer'>
-      MediaPlayer
-      <button type='button'
-              @click='close'>
-        Close
-      </button>
-    </div>
-  </TransitionSlideFromBottom>
+  <portal to="media-player">
+    <TransitionSlideFromBottom>
+      <div class='MediaPlayer'
+           v-if='visible'>
+        <h2>MediaPlayer</h2>
+        <!-- <slot name='info' /> -->
+        <slot />
+        <button type='button'
+                @click='close'>
+          Close
+        </button>
+      </div>
+    </TransitionSlideFromBottom>
+  </portal>
 </template>
 
 <script>
@@ -19,6 +24,10 @@ export default {
     TransitionSlideFromBottom
   },
   props: {
+    visible: {
+      type: Boolean,
+      default: false
+    },
     imgSrc: {
       type: String,
       default: ""
