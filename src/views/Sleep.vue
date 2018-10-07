@@ -44,6 +44,7 @@ export default {
   methods: {
     itemClicked(item) {
       // console.log("itemClicked", item);
+      this.$store.dispatch("navigationVisible", false);
       this.$store.dispatch("mediaPlayerVisible", true);
       this.$store.dispatch("blur", true);
     }

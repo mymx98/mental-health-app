@@ -6,12 +6,16 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     blur: false,
+    navigationVisible: true,
     mediaPlayerVisible: false,
     mediaPlayerFloatingVisible: false
   },
   getters: {
     blur(state) {
       return state.blur;
+    },
+    navigationVisible(state) {
+      return state.navigationVisible;
     },
     mediaPlayerVisible(state) {
       return state.mediaPlayerVisible;
@@ -24,6 +28,9 @@ export default new Vuex.Store({
     blur(state, val) {
       state.blur = val;
     },
+    navigationVisible(state, val) {
+      state.navigationVisible = val;
+    },
     mediaPlayerVisible(state, val) {
       state.mediaPlayerVisible = val;
     },
@@ -34,6 +41,9 @@ export default new Vuex.Store({
   actions: {
     blur({ commit }, val) {
       commit("blur", val);
+    },
+    navigationVisible({ commit }, val) {
+      commit("navigationVisible", val);
     },
     mediaPlayerVisible({ commit }, val) {
       commit("mediaPlayerVisible", val);

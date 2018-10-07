@@ -8,8 +8,8 @@
       </transition>
     </div>
     <div class='App__navigation'>
-      <!-- <Navigation class='App__navigation' /> -->
-      <Navigation class='App__navigation' />
+      <Navigation class='App__navigation'
+                  v-if='navigationVisible' />
     </div>
     <div class='App__media-player-container'>
       <MediaPlayer v-if='mediaPlayerVisible'
@@ -32,6 +32,7 @@ export default {
   computed: {
     ...mapGetters({
       blur: "blur",
+      navigationVisible: "navigationVisible",
       mediaPlayerVisible: "mediaPlayerVisible"
     }),
     contentClasses() {
@@ -44,6 +45,7 @@ export default {
     mediaPlayerClose() {
       this.$store.dispatch("mediaPlayerVisible", false);
       this.$store.dispatch("blur", false);
+      this.$store.dispatch("navigationVisible", true);
     }
   }
 };
