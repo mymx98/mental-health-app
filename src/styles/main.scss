@@ -5,6 +5,7 @@ html,
 body {
   height: 100%;
   background-color: $body-background-color;
+  box-sizing: border-box;
 }
 
 body {
@@ -16,7 +17,7 @@ body {
 
 // Global
 .app-gutter-spacing {
-  padding: 0 24px;
+  padding: 0 24px 0 24px;
 }
 
 .button--no-style {
@@ -29,6 +30,12 @@ body {
   cursor: pointer;
   height: 100%;
   width: 100%;
+}
+
+$navigation-height: 160px; // Approximate
+
+.navigation-gutter {
+  margin-bottom: $navigation-height;
 }
 
 //

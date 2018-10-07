@@ -1,5 +1,5 @@
 <template>
-  <div class='Sleep'>
+  <div class='Sleep navigation-gutter'>
     <div class='Sleep__header'>
       <div class='Sleep__header-title app-gutter-spacing'>
         Sleep Stories

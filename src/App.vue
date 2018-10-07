@@ -59,8 +59,8 @@ export default {
 .App {
   // display: flex;
   // flex-direction: column;
-  // height: 100vh;
   height: 100%;
+  // height: 100vh;
   // justify-content: center;
   // align-items: center;
 
@@ -72,7 +72,7 @@ export default {
     // height: 100%;
     // transition: $swift-ease-out;
     // transition-property: filter;
-    margin-bottom: 160px;
+    // margin-bottom: 160px;
 
     &--blur {
       filter: blur(5px);

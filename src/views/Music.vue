@@ -1,5 +1,5 @@
 <template>
-  <div class='Music'>
+  <div class='Music navigation-gutter'>
     <div class='Music__header'>
       <div class='Music__header-title app-gutter-spacing'>
         Music

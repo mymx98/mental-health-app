@@ -1,5 +1,5 @@
 <template>
-  <div class='Meditate'>
+  <div class='Meditate navigation-gutter'>
     <div class='Meditate__header'>
       <div class='Meditate__header-title app-gutter-spacing'>
         Meditate
