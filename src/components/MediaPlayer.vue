@@ -1,92 +1,80 @@
 <template>
-  <portal to="media-player">
-    <TransitionSlideFromBottom>
-      <div class='MediaPlayer'
-           v-if='visible'>
-        <FocusLock returnFocus>
-          <div class='MediaPlayer__series'>
-            Daily Calm
-          </div>
-          <div class='MediaPlayer__title'>
-            Non-Attachment
-          </div>
-          <div class='MediaPlayer__subtitle'>
-            Daily Calm
-          </div>
-          <slot />
-          <div>
-            <!-- "https://s3-us-west-2.amazonaws.com/s.cdpn.io/308622/Post%20Malone%20-%20rockstar%20ft.%2021%20Savage%20(1).mp3", -->
-            <!-- <audio controls
-                   ref='player'>
-              <source src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/308622/Post%20Malone%20-%20rockstar%20ft.%2021%20Savage%20(1).mp3"
-                      type="audio/mpeg">
-            </audio> -->
-            <div id="controls">
-              <button type='button'
-                      class='player-button'
-                      id="previous-btn"
-                      @click='rewind'>
-                <Rotate class='player-icon' />
-              </button>
-              <button type='button'
-                      class='player-button'
-                      id="play-btn"
-                      @click='togglePlayerStatus'>
-                <Pause v-if='playerStatus === "playing"'
-                       class='player-icon' />
-                <Play v-else
-                      class='player-icon' />
-              </button>
-              <button type='button'
-                      class='player-button'
-                      id="next-btn"
-                      @click='forward'>
-                <Rotate class='player-icon player-icon-forward' />
-              </button>
-              <button type='button'
-                      class='player-button'
-                      id="player-Square-button"
-                      @click='stop'>
-                <Square class='player-icon' />
-              </button>
-            </div>
-            <div id="timeline">
-              <span id="current-time">--:--</span>
-              <span id="total-time">--:--</span>
-              <div class="slider"
-                   data-direction="horizontal">
-                <div class="progress">
-                  <div class="pin"
-                       id="progress-pin"
-                       data-method="rewind"></div>
-                </div>
-              </div>
-            </div>
-            <div id="sub-controls">
-              <i class="fa fa-random"
-                 aria-hidden="true"></i>
-              <i class="fa fa-refresh"
-                 aria-hidden="true"></i>
-              <i class="fa fa-bluetooth-b active"
-                 id="bluetooth-btn"
-                 aria-hidden="true"></i>
-              <i class="fa fa-heart-o"
-                 id="heart-icon"
-                 aria-hidden="true"></i>
-            </div>
-          </div>
-          <button type='button'
-                  @click='close'>
-            Close
-          </button>
-        </FocusLock>
+  <div class='MediaPlayer'>
+    <FocusLock returnFocus>
+      <div class='MediaPlayer__series'>
+        Daily Calm
       </div>
-    </TransitionSlideFromBottom>
-  </portal>
+      <div class='MediaPlayer__title'>
+        Non-Attachment
+      </div>
+      <div class='MediaPlayer__subtitle'>
+        Daily Calm
+      </div>
+      <slot />
+      <div>
+        <div id="controls">
+          <button type='button'
+                  class='player-button'
+                  id="previous-btn"
+                  @click='rewind'>
+            <Rotate class='player-icon' />
+          </button>
+          <button type='button'
+                  class='player-button'
+                  id="play-btn"
+                  @click='togglePlayerStatus'>
+            <Pause v-if='playerStatus === "playing"'
+                   class='player-icon' />
+            <Play v-else
+                  class='player-icon' />
+          </button>
+          <button type='button'
+                  class='player-button'
+                  id="next-btn"
+                  @click='forward'>
+            <Rotate class='player-icon player-icon-forward' />
+          </button>
+          <button type='button'
+                  class='player-button'
+                  id="player-Square-button"
+                  @click='stop'>
+            <Square class='player-icon' />
+          </button>
+        </div>
+        <div id="timeline">
+          <span id="current-time">--:--</span>
+          <span id="total-time">--:--</span>
+          <div class="slider"
+               data-direction="horizontal">
+            <div class="progress">
+              <div class="pin"
+                   id="progress-pin"
+                   data-method="rewind"></div>
+            </div>
+          </div>
+        </div>
+        <div id="sub-controls">
+          <i class="fa fa-random"
+             aria-hidden="true"></i>
+          <i class="fa fa-refresh"
+             aria-hidden="true"></i>
+          <i class="fa fa-bluetooth-b active"
+             id="bluetooth-btn"
+             aria-hidden="true"></i>
+          <i class="fa fa-heart-o"
+             id="heart-icon"
+             aria-hidden="true"></i>
+        </div>
+      </div>
+      <button type='button'
+              @click='close'>
+        Close
+      </button>
+    </FocusLock>
+  </div>
 </template>
 
 <script>
-import TransitionSlideFromBottom from "@/components/Shared/TransitionSlideFromBottom";
 import FocusLock from "vue-focus-lock";
 import Rotate from "@/assets/icons/Rotate.svg";
 import Play from "@/assets/icons/Play.svg";
@@ -96,22 +84,11 @@ import Square from "@/assets/icons/Square.svg";
 export default {
   name: "MediaPlayer",
   components: {
-    TransitionSlideFromBottom,
     FocusLock,
     Rotate,
     Play,
     Pause,
     Square
-  },
-  props: {
-    visible: {
-      type: Boolean,
-      default: false
-    },
-    imgSrc: {
-      type: String,
-      default: ""
-    }
   },
   data() {
     return {
@@ -172,14 +149,6 @@ export default {
 @import "@/styles/variables.scss";
 
 .MediaPlayer {
-  width: 100%;
-  height: 100%;
-  border: 3px solid white;
-  box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-
   &__series {
     font-size: 2em;
   }

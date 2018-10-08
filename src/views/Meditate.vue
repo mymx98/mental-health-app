@@ -25,10 +25,10 @@
                                  :imgSrc='item.imgSrc' /> -->
       </div>
     </div>
-    <MediaPlayer :visible='playerVisible'
-                 @close='closePlayer'>
+    <MediaPlayerContainer :visible='playerVisible'
+                          @close='closePlayer'>
       Meditate
-    </MediaPlayer>
+    </MediaPlayerContainer>
   </div>
 </template>
 
@@ -37,7 +37,7 @@
 import FilterList from "@/components/Shared/FilterList";
 import GuidedSessionList from "@/components/GuidedSessionList";
 import GuidedSession from "@/api/GuidedSession";
-import MediaPlayer from "@/components/MediaPlayer";
+import MediaPlayerContainer from "@/components/MediaPlayerContainer";
 
 // import Meditate from "@/api/Meditate";
 
@@ -46,7 +46,7 @@ export default {
   components: {
     FilterList,
     GuidedSessionList,
-    MediaPlayer
+    MediaPlayerContainer
     // MeditateFilter,
     // MeditateSessionCardLink
   },

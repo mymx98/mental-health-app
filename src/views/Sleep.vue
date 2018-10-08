@@ -22,10 +22,10 @@
                               @click.native='itemClicked(item)' />
       </div>
     </div>
-    <MediaPlayer :visible='playerVisible'
-                 @close='closePlayer'>
+    <MediaPlayerContainer :visible='playerVisible'
+                          @close='closePlayer'>
       Sleep
-    </MediaPlayer>
+    </MediaPlayerContainer>
   </div>
 </template>
 
@@ -33,13 +33,13 @@
 // import DomPortal from "@/directives/vue-dom-portal";
 import SleepSessionCardLink from "@/components/SleepSessionCardLink";
 import SleepFilter from "@/components/SleepFilter";
-import MediaPlayer from "@/components/MediaPlayer";
+import MediaPlayerContainer from "@/components/MediaPlayerContainer";
 import Sleep from "@/api/Sleep";
 
 export default {
   name: "Sleep",
   components: {
-    MediaPlayer,
+    MediaPlayerContainer,
     SleepFilter,
     SleepSessionCardLink
   },
@@ -56,7 +56,7 @@ export default {
     itemClicked(item) {
       // console.log("itemClicked", item);
       this.$store.dispatch("navigationVisible", false);
-      // this.$store.dispatch("mediaPlayerVisible", true);
+      // this.$store.dispatch("mediaPlayerContainerVisible", true);
       this.playerVisible = true;
       this.$store.dispatch("blur", true);
     },
@@ -64,7 +64,7 @@ export default {
       this.$store.dispatch("blur", false);
       this.playerVisible = false;
       this.$store.dispatch("navigationVisible", true);
-      // this.$store.dispatch("mediaPlayerVisible", true);
+      // this.$store.dispatch("mediaPlayerContainerVisible", true);
     }
   },
   async created() {

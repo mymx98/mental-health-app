@@ -23,10 +23,10 @@
                        @click.native='itemClicked(item)' />
       </div>
     </div>
-    <MediaPlayer :visible='playerVisible'
-                 @close='closePlayer'>
+    <MediaPlayerContainer :visible='playerVisible'
+                          @close='closePlayer'>
       Music
-    </MediaPlayer>
+    </MediaPlayerContainer>
   </div>
 </template>
 
@@ -35,7 +35,7 @@ import AudioCardLink from "@/components/Shared/AudioCardLink";
 import FilterList from "@/components/Shared/FilterList";
 import GuidedSessionList from "@/components/GuidedSessionList";
 import Music from "@/api/Music";
-import MediaPlayer from "@/components/MediaPlayer";
+import MediaPlayerContainer from "@/components/MediaPlayerContainer";
 
 export default {
   name: "Music",
@@ -43,7 +43,7 @@ export default {
     AudioCardLink,
     FilterList,
     GuidedSessionList,
-    MediaPlayer
+    MediaPlayerContainer
     // MusicFilter,
     // MusicSessionCardLink
   },

@@ -21,14 +21,14 @@
 
 <script>
 import Navigation from "@/components/Navigation";
-import MediaPlayer from "@/components/MediaPlayer";
+// import MediaPlayer from "@/components/MediaPlayer";
 import { mapGetters } from "vuex";
 
 export default {
   name: "App",
   components: {
-    Navigation,
-    MediaPlayer
+    Navigation
+    // MediaPlayer
   },
   computed: {
     ...mapGetters({
