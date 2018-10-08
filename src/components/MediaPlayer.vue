@@ -46,7 +46,8 @@
           <span id="total-time">--:--</span>
           <div class="slider"
                data-direction="horizontal">
-            <div class="progress">
+            <div class="progress"
+                 :style='progressStyles'>
               <div class="pin"
                    id="progress-pin"
                    data-method="rewind"></div>
@@ -92,8 +93,20 @@ export default {
   },
   data() {
     return {
+      playerProgress: 0,
       playerStatus: "paused" // 'playing', 'paused', 'stopped'
     };
+  },
+  computed: {
+    progressStyles() {
+      // return {
+      // border: "1px solid red"
+      // };
+      console.log(this.playerProgress);
+      return {
+        width: `${this.playerProgress}%`
+      };
+    }
   },
   methods: {
     close() {
@@ -119,6 +132,28 @@ export default {
     stop() {
       this.close();
     },
+    seektimeupdate() {
+      this.playerProgress =
+        this.player.currentTime * (100 / this.player.duration);
+      // var curmins = Math.floor(audio.currentTime / 60);
+      // var cursecs = Math.floor(audio.currentTime - curmins * 60);
+      // var durmins = Math.floor(audio.duration / 60);
+      // var dursecs = Math.floor(audio.duration - durmins * 60);
+      // if (cursecs < 10) {
+      //   cursecs = "0" + cursecs;
+      // }
+      // if (dursecs < 10) {
+      //   dursecs = "0" + dursecs;
+      // }
+      // if (curmins < 10) {
+      //   curmins = "0" + curmins;
+      // }
+      // if (durmins < 10) {
+      //   durmins = "0" + durmins;
+      // }
+      // curtimetext.innerHTML = curmins + ":" + cursecs;
+      // durtimetext.innerHTML = durmins + ":" + dursecs;
+    },
     destroyPlayer() {
       console.log("destroyPlayer", this.player);
       if (this.player) {
@@ -135,6 +170,7 @@ export default {
     this.player = new Audio();
     this.player.src =
       "https://s3-us-west-2.amazonaws.com/s.cdpn.io/308622/Post%20Malone%20-%20rockstar%20ft.%2021%20Savage%20(1).mp3";
+    this.player.addEventListener("timeupdate", this.seektimeupdate);
     // this.player.loop = true;
     // this.player.play();
   },
