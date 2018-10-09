@@ -62,14 +62,15 @@
           <div id="timeline">
             <span id="current-time">--:--</span>
             <span id="total-time">--:--</span>
-            <div class="slider"
-                 data-direction="horizontal"
+            <div class="slider-container"
                  @click='sliderClicked'>
-              <div class="progress"
-                   :style='progressStyles'>
-                <div class="pin"
-                     id="progress-pin"
-                     data-method="rewind"></div>
+              <div class="slider">
+                <div class="progress"
+                     :style='progressStyles'>
+                  <div class="pin"
+                       id="progress-pin"
+                       data-method="rewind"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -157,9 +158,11 @@ export default {
     },
     play() {
       this.player.play();
+      this.playerStatus = "playing";
     },
     pause() {
       this.player.pause();
+      this.playerStatus = "paused";
     },
     rewind() {},
     forward() {},
@@ -216,6 +219,10 @@ export default {
     this.player.src =
       "https://s3-us-west-2.amazonaws.com/s.cdpn.io/308622/Post%20Malone%20-%20rockstar%20ft.%2021%20Savage%20(1).mp3";
     this.player.addEventListener("timeupdate", this.seektimeupdate);
+    this.player.addEventListener("ended", () => {
+      this.player.currentTime = 0;
+      this.pause();
+    });
     // this.player.loop = true;
     // this.player.play();
   },
@@ -332,7 +339,12 @@ export default {
     }
   }
 
-  div.slider {
+  .slider-container {
+    padding: 24px 0;
+    cursor: pointer;
+  }
+
+  .slider {
     background-color: darken(white, 50%);
     border-radius: 2px;
     cursor: pointer;
