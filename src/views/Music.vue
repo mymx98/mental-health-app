@@ -24,6 +24,7 @@
       </div>
     </div>
     <MediaPlayerContainer :visible='playerVisible'
+                          :media='media'
                           @close='closePlayer'>
       Music
     </MediaPlayerContainer>
@@ -49,6 +50,7 @@ export default {
   },
   data() {
     return {
+      media: null,
       filterList: [
         {
           filter: "all",
@@ -86,15 +88,15 @@ export default {
       item.active = true;
     },
     itemClicked(item) {
-      // console.log("itemClicked", item);
       this.$store.dispatch("navigationVisible", false);
-      // this.$store.dispatch("mediaPlayerVisible", true);
       this.playerVisible = true;
+      this.media = item;
       this.$store.dispatch("blur", true);
     },
     closePlayer() {
       this.$store.dispatch("blur", false);
       this.playerVisible = false;
+      this.media = null;
       this.$store.dispatch("navigationVisible", true);
       // this.$store.dispatch("mediaPlayerVisible", true);
     }

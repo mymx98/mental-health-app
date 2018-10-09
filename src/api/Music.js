@@ -10,8 +10,8 @@ export default {
             category: "relax",
             description: "Music Description",
             duration: 3600,
-            audioFile:
-              "https://s3-us-west-2.amazonaws.com/s.cdpn.io/308622/Post%20Malone%20-%20rockstar%20ft.%2021%20Savage%20(1).mp3",
+            mediaSrc:
+              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-07.mp3",
             imgSrc: "https://i.imgur.com/jHdJbVl.jpg"
           },
           {
@@ -21,6 +21,8 @@ export default {
             category: "relax",
             description: "Music Description",
             duration: 3000,
+            mediaSrc:
+              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-08.mp3",
             imgSrc: "https://i.imgur.com/TwuG22H.jpg"
           },
           {
@@ -30,6 +32,8 @@ export default {
             category: "relax",
             description: "Music Description",
             duration: 2000,
+            mediaSrc:
+              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-09.mp3",
             imgSrc: "https://i.imgur.com/rsPdxeg.jpg"
           },
           {
@@ -39,6 +43,8 @@ export default {
             category: "relax",
             description: "Music Description",
             duration: 2400,
+            mediaSrc:
+              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-10.mp3",
             imgSrc: "https://i.imgur.com/muueGm3.jpg"
           },
           {
@@ -48,6 +54,8 @@ export default {
             category: "nature",
             description: "Music Description",
             duration: 1200,
+            mediaSrc:
+              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-11.mp3",
             imgSrc: "https://i.imgur.com/fe3NEY4.jpg"
           },
           {
@@ -57,6 +65,8 @@ export default {
             category: "nature",
             description: "Music Description",
             duration: 1600,
+            mediaSrc:
+              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-12.mp3",
             imgSrc: "https://i.imgur.com/ye3eyys.jpg"
           }
         ]

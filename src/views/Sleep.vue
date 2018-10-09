@@ -66,6 +66,7 @@ export default {
     closePlayer() {
       this.$store.dispatch("blur", false);
       this.playerVisible = false;
+      this.media = null;
       this.$store.dispatch("navigationVisible", true);
       // this.$store.dispatch("mediaPlayerContainerVisible", true);
     }
