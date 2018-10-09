@@ -22,11 +22,13 @@
                               @click.native='itemClicked(item)' />
       </div>
     </div>
-    <MediaPlayerContainer :visible='playerVisible'
+    <MediaPlayerContainer :visible='playerVisible && !playerMinimized'
                           :media='media'
-                          @close='closePlayer'>
-      Sleep
-    </MediaPlayerContainer>
+                          @minimize='minimize'
+                          @close='closePlayer' />
+    <MediaPlayerMinimized :visible='playerVisible && playerMinimized'
+                          :media='media'
+                          @maximize='maximize' />
   </div>
 </template>
 
@@ -35,12 +37,14 @@
 import SleepSessionCardLink from "@/components/SleepSessionCardLink";
 import SleepFilter from "@/components/SleepFilter";
 import MediaPlayerContainer from "@/components/MediaPlayerContainer";
+import MediaPlayerMinimized from "@/components/MediaPlayerMinimized";
 import Sleep from "@/api/Sleep";
 
 export default {
   name: "Sleep",
   components: {
     MediaPlayerContainer,
+    MediaPlayerMinimized,
     SleepFilter,
     SleepSessionCardLink
   },
@@ -51,7 +55,8 @@ export default {
     return {
       media: null,
       list: [],
-      playerVisible: false
+      playerVisible: false,
+      playerMinimized: false
     };
   },
   methods: {
@@ -60,6 +65,7 @@ export default {
       this.$store.dispatch("navigationVisible", false);
       // this.$store.dispatch("mediaPlayerContainerVisible", true);
       this.playerVisible = true;
+      this.playerMinimized = false;
       this.media = item;
       this.$store.dispatch("blur", true);
     },
@@ -69,6 +75,21 @@ export default {
       this.media = null;
       this.$store.dispatch("navigationVisible", true);
       // this.$store.dispatch("mediaPlayerContainerVisible", true);
+    },
+    minimize() {
+      console.log("minimize");
+      this.$store.dispatch("navigationVisible", true);
+      this.$store.dispatch("blur", false);
+      this.playerVisible = true;
+      this.playerMinimized = true;
+      // this.media = null;
+    },
+    maximize() {
+      console.log("maximize");
+      this.$store.dispatch("navigationVisible", true);
+      this.$store.dispatch("blur", true);
+      this.playerVisible = true;
+      this.playerMinimized = false;
     }
   },
   async created() {

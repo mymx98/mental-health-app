@@ -4,8 +4,8 @@
                class='lock-container'
                lockContainerClass='lock-container-inner'>
       <button type='button'
-              class='MediaPlayer__close button--no-style'
-              @click='close'>
+              class='MediaPlayer__minimize button--no-style'
+              @click='$emit("minimize")'>
         <ChevronDown />
       </button>
       <div class='MediaPlayer__content'>
@@ -299,7 +299,7 @@ export default {
   height: 100%;
   position: relative;
 
-  &__close {
+  &__minimize {
     position: absolute;
     top: 0;
     left: 0;

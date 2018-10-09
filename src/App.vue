@@ -16,6 +16,7 @@
                    @close='mediaPlayerClose' />
     </div> -->
     <portal-target name="media-player" />
+    <portal-target name="media-player-minimized" />
   </div>
 </template>
 
