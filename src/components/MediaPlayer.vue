@@ -63,7 +63,8 @@
             <span id="current-time">--:--</span>
             <span id="total-time">--:--</span>
             <div class="slider"
-                 data-direction="horizontal">
+                 data-direction="horizontal"
+                 @click='sliderClicked'>
               <div class="progress"
                    :style='progressStyles'>
                 <div class="pin"
@@ -133,6 +134,18 @@ export default {
       this.$emit("close");
     },
     settings() {},
+    sliderClicked(e) {
+      // console.log("sliderClicked", e, e.x, e.offsetX, e.clientX, e.screenX);
+      console.log(
+        "sliderClicked",
+        e.offsetX,
+        e.target.clientWidth,
+        (e.offsetX / e.target.clientWidth) * 100
+      );
+
+      const sliderFactor = e.offsetX / e.target.clientWidth;
+      this.player.currentTime = this.player.duration * sliderFactor;
+    },
     togglePlayerStatus() {
       if (this.playerStatus === "playing") {
         this.playerStatus = "paused";
@@ -153,6 +166,17 @@ export default {
     stop() {
       this.close();
     },
+    updateProgress() {
+      // var current = player.currentTime;
+      // var percent = (current / player.duration) * 100;
+      // progress.style.width = percent + "%";
+      // currentTime.textContent = formatTime(current);
+    },
+    // rewind(event) {
+    //   if (inRange(event)) {
+    //     player.currentTime = player.duration * getCoefficient(event);
+    //   }
+    // },
     seektimeupdate() {
       this.playerProgress =
         this.player.currentTime * (100 / this.player.duration);
