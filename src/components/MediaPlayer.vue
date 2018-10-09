@@ -22,34 +22,42 @@
         </div>
         <!-- <slot /> -->
         <div class='MediaPlayer__controls'>
-          <div id="controls">
-            <button type='button'
-                    class='player-button'
-                    id="previous-btn"
-                    @click='rewind'>
-              <Rotate class='player-icon' />
-            </button>
-            <button type='button'
-                    class='player-button'
-                    id="play-btn"
-                    @click='togglePlayerStatus'>
-              <Pause v-if='playerStatus === "playing"'
-                     class='player-icon' />
-              <Play v-else
-                    class='player-icon' />
-            </button>
-            <button type='button'
-                    class='player-button'
-                    id="next-btn"
-                    @click='forward'>
-              <Rotate class='player-icon player-icon-forward' />
-            </button>
-            <button type='button'
-                    class='player-button'
-                    id="player-Square-button"
-                    @click='stop'>
-              <Square class='player-icon' />
-            </button>
+          <div class='MediaPlayer__controls-primary-container'>
+            <div class='MediaPlayer__controls-primary'>
+              <button type='button'
+                      class='player-button'
+                      id="previous-btn"
+                      @click='settings'>
+                <Sliders class='player-icon settings-icon' />
+              </button>
+              <button type='button'
+                      class='player-button'
+                      id="previous-btn"
+                      @click='rewind'>
+                <Rotate class='player-icon' />
+              </button>
+              <button type='button'
+                      class='player-button'
+                      id="play-btn"
+                      @click='togglePlayerStatus'>
+                <Pause v-if='playerStatus === "playing"'
+                       class='player-icon player-pause-icon' />
+                <Play v-else
+                      class='player-icon player-play-icon' />
+              </button>
+              <button type='button'
+                      class='player-button'
+                      id="next-btn"
+                      @click='forward'>
+                <Rotate class='player-icon player-icon-forward' />
+              </button>
+              <button type='button'
+                      class='player-button'
+                      id="player-Square-button"
+                      @click='stop'>
+                <Square class='player-icon' />
+              </button>
+            </div>
           </div>
           <div id="timeline">
             <span id="current-time">--:--</span>
@@ -90,6 +98,7 @@ import Play from "@/assets/icons/Play.svg";
 import Pause from "@/assets/icons/Pause.svg";
 import Square from "@/assets/icons/Square.svg";
 import ChevronDown from "@/assets/icons/ChevronDown.svg";
+import Sliders from "@/assets/icons/Sliders.svg";
 
 export default {
   name: "MediaPlayer",
@@ -99,7 +108,8 @@ export default {
     Play,
     Pause,
     Square,
-    ChevronDown
+    ChevronDown,
+    Sliders
   },
   data() {
     return {
@@ -122,6 +132,7 @@ export default {
     close() {
       this.$emit("close");
     },
+    settings() {},
     togglePlayerStatus() {
       if (this.playerStatus === "playing") {
         this.playerStatus = "paused";
@@ -234,18 +245,33 @@ export default {
   //   left: 100px;
   // }
 
-  // &__track-info {
-  // }
+  &__track-info {
+    margin: 96px 0;
+  }
 
   &__controls {
     text-align: center;
     margin-top: auto;
   }
 
+  &__controls-primary-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__controls-primary {
+    display: flex;
+    // align-items: center;
+    justify-content: space-between;
+    margin: 24px 0;
+    max-width: 480px;
+    width: 100%;
+  }
+
   &__series {
     text-align: center;
     font-size: 2em;
-    margin: 48px 0;
+    margin-bottom: 96px;
   }
 
   &__title {
@@ -257,7 +283,6 @@ export default {
   &__subtitle {
     text-align: center;
     font-size: 1.2em;
-    margin-bottom: 48px;
   }
 
   $iphone-color: white;
@@ -319,6 +344,19 @@ export default {
 
   .player-icon {
     stroke: $color-white;
+    width: 36px;
+    height: 36px;
+  }
+
+  .player-play-icon,
+  .player-pause-icon {
+    width: 72px;
+    height: 72px;
+  }
+
+  .settings-icon {
+    fill: $color-white;
+    padding: 12px;
   }
 
   .player-button {
