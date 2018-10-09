@@ -1,8 +1,8 @@
 <template>
-  <portal to="media-player">
+  <portal to="media-player-minimized">
     <TransitionSlideFromBottom>
       <div v-if='visible'
-           class='MediaPlayerContainer'>
+           class='MediaPlayerMinimized'>
         <MediaPlayer class='MediaPlayer'
                      :media='media'
                      autoplay
@@ -17,7 +17,7 @@ import TransitionSlideFromBottom from "@/components/Shared/TransitionSlideFromBo
 import MediaPlayer from "@/components/MediaPlayer";
 
 export default {
-  name: "MediaPlayerContainer",
+  name: "MediaPlayerMinimized",
   components: {
     MediaPlayer,
     TransitionSlideFromBottom
@@ -30,10 +30,6 @@ export default {
     media: {
       type: Object
     }
-    // imgSrc: {
-    //   type: String,
-    //   default: ""
-    // }
   }
 };
 </script>
@@ -41,7 +37,7 @@ export default {
 <style lang='scss' scoped>
 @import "@/styles/variables.scss";
 
-.MediaPlayerContainer {
+.MediaPlayerMinimized {
   width: 100%;
   height: 100%;
   border: 3px solid white;
