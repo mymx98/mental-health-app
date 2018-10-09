@@ -26,13 +26,11 @@
             <div class='MediaPlayer__controls-primary'>
               <button type='button'
                       class='player-button'
-                      id="previous-btn"
                       @click='settings'>
                 <Sliders class='player-icon settings-icon' />
               </button>
               <button type='button'
                       class='player-button'
-                      id="previous-btn"
                       @click='rewind'>
                 <Rotate class='player-icon' />
               </button>
@@ -61,8 +59,8 @@
             </div>
           </div>
           <div id="timeline">
-            <span id="current-time">--:--</span>
-            <span id="total-time">--:--</span>
+            <span id="current-time">{{ currentTimeFormatted }}</span>
+            <span id="total-time">{{ mediaDurationFormatted }}</span>
             <div class="slider-container"
                  @click='sliderClicked'>
               <div class="slider">
@@ -103,6 +101,25 @@ import Square from "@/assets/icons/Square.svg";
 import ChevronDown from "@/assets/icons/ChevronDown.svg";
 import Sliders from "@/assets/icons/Sliders.svg";
 
+function pad(val, size) {
+  var s = String(val);
+  while (s.length < (size || 2)) {
+    s = "0" + s;
+  }
+  return s;
+}
+
+function formattedTimeStamp(timeInSeconds = 0) {
+  if (timeInSeconds) {
+    const minutes = pad(Math.floor(timeInSeconds / 60), 2);
+    const seconds = pad(Math.floor(timeInSeconds % 60), 2);
+
+    return `${minutes}:${seconds}`;
+  } else {
+    return "--:--";
+  }
+}
+
 export default {
   name: "MediaPlayer",
   components: {
@@ -130,19 +147,29 @@ export default {
   },
   data() {
     return {
-      playerProgress: 0,
+      currentTime: 0,
+      mediaDuration: 0,
       playerStatus: "paused" // 'playing', 'paused', 'stopped'
     };
   },
   computed: {
     progressStyles() {
-      // return {
-      // border: "1px solid red"
-      // };
-      console.log(this.playerProgress);
       return {
         width: `${this.playerProgress}%`
       };
+    },
+    playerProgress() {
+      if (this.currentTime && this.player && this.player.duration) {
+        return this.currentTime * (100 / this.player.duration);
+      } else {
+        return 0;
+      }
+    },
+    currentTimeFormatted() {
+      return formattedTimeStamp(this.currentTime);
+    },
+    mediaDurationFormatted() {
+      return formattedTimeStamp(this.mediaDuration);
     }
   },
   methods: {
@@ -151,7 +178,6 @@ export default {
     },
     settings() {},
     sliderClicked(e) {
-      // console.log("sliderClicked", e, e.x, e.offsetX, e.clientX, e.screenX);
       console.log(
         "sliderClicked",
         e.offsetX,
@@ -202,41 +228,12 @@ export default {
     stop() {
       this.close();
     },
-    updateProgress() {
-      // var current = player.currentTime;
-      // var percent = (current / player.duration) * 100;
-      // progress.style.width = percent + "%";
-      // currentTime.textContent = formatTime(current);
-    },
-    // rewind(event) {
-    //   if (inRange(event)) {
-    //     player.currentTime = player.duration * getCoefficient(event);
-    //   }
-    // },
     seektimeupdate() {
-      this.playerProgress =
-        this.player.currentTime * (100 / this.player.duration);
-      // var curmins = Math.floor(audio.currentTime / 60);
-      // var cursecs = Math.floor(audio.currentTime - curmins * 60);
-      // var durmins = Math.floor(audio.duration / 60);
-      // var dursecs = Math.floor(audio.duration - durmins * 60);
-      // if (cursecs < 10) {
-      //   cursecs = "0" + cursecs;
-      // }
-      // if (dursecs < 10) {
-      //   dursecs = "0" + dursecs;
-      // }
-      // if (curmins < 10) {
-      //   curmins = "0" + curmins;
-      // }
-      // if (durmins < 10) {
-      //   durmins = "0" + durmins;
-      // }
-      // curtimetext.innerHTML = curmins + ":" + cursecs;
-      // durtimetext.innerHTML = durmins + ":" + dursecs;
+      if (this.player) {
+        this.currentTime = this.player.currentTime;
+      }
     },
     destroyPlayer() {
-      console.log("destroyPlayer", this.player);
       if (this.player) {
         this.player.pause();
         this.player.src = "";
@@ -258,7 +255,15 @@ export default {
     });
 
     if (this.autoplay) {
-      this.player.addEventListener("canplay", this.play, false);
+      // this.player.addEventListener("canplay", this.play, false);
+      this.player.addEventListener(
+        "canplay",
+        () => {
+          this.mediaDuration = this.player.duration;
+          this.play();
+        },
+        false
+      );
     }
     // this.player.loop = true;
   },
@@ -330,7 +335,7 @@ export default {
     // align-items: center;
     justify-content: space-between;
     margin: 24px 0;
-    max-width: 480px;
+    max-width: 375px;
     width: 100%;
   }
 
@@ -435,7 +440,7 @@ export default {
 
   .settings-icon {
     fill: $color-white;
-    padding: 12px;
+    // padding: 12px;
   }
 
   .player-button {
