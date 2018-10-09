@@ -115,6 +115,10 @@ export default {
     Sliders
   },
   props: {
+    media: {
+      type: Object,
+      required: true
+    },
     seekInterval: {
       type: Number,
       default: 5
@@ -245,8 +249,7 @@ export default {
   mounted() {
     // this.$refs.player.play();
     this.player = new Audio();
-    this.player.src =
-      "https://drive.google.com/uc?export=download&id=1tHfqEBA0XdxeJRuZEWKcWetzFJivigwH";
+    this.player.src = this.media.mediaSrc;
     this.player.addEventListener("timeupdate", this.seektimeupdate);
 
     this.player.addEventListener("ended", () => {

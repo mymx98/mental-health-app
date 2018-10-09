@@ -4,6 +4,7 @@
       <div v-if='visible'
            class='MediaPlayerContainer'>
         <MediaPlayer class='MediaPlayer'
+                     :media='media'
                      autoplay
                      @close='$emit("close")' />
       </div>
@@ -26,10 +27,13 @@ export default {
       type: Boolean,
       default: false
     },
-    imgSrc: {
-      type: String,
-      default: ""
+    media: {
+      type: Object
     }
+    // imgSrc: {
+    //   type: String,
+    //   default: ""
+    // }
   }
 };
 </script>

@@ -1,3 +1,7 @@
+function getAudioUrl(id) {
+  return `https://drive.google.com/uc?export=download&id=${id}`;
+}
+
 export default {
   async getSleepStories() {
     return {
@@ -10,6 +14,7 @@ export default {
             description: "Story Description",
             author: "Myles Sinclair",
             duration: 1000,
+            mediaSrc: getAudioUrl("1tHfqEBA0XdxeJRuZEWKcWetzFJivigwH"),
             imgSrc: "https://i.imgur.com/ubAXme5.jpg"
           },
           {
@@ -19,6 +24,7 @@ export default {
             description: "Story Description",
             author: "Gideon McCaskey",
             duration: 1500,
+            mediaSrc: getAudioUrl("10jWxHQ8f20QIyHTFIhV7zWZGrW7BJcUz"),
             imgSrc: "https://i.imgur.com/ospZv7f.jpg"
           },
           {
@@ -28,6 +34,7 @@ export default {
             description: "Story Description",
             author: "Electa Caldwell",
             duration: 2100,
+            mediaSrc: getAudioUrl("1K_hW2Vn6NT5-hnbJxUrTXPscsnDnLGQa"),
             imgSrc: "https://i.imgur.com/tCc6mkh.jpg"
           },
           {
@@ -37,6 +44,7 @@ export default {
             description: "Story Description",
             author: "Ellen Irwin",
             duration: 700,
+            mediaSrc: getAudioUrl("1VZZ-UkkGCLT_mUnEt5NvisAc-wiyD9Lz"),
             imgSrc: "https://i.imgur.com/eE0qUlv.jpg"
           },
           {
@@ -46,6 +54,7 @@ export default {
             description: "Story Description",
             author: "Dorothy Clement",
             duration: 1200,
+            mediaSrc: getAudioUrl("15hEkvGJ38T3vzlrmxrOwOnARpHXlCeMM"),
             imgSrc: "https://i.imgur.com/wYjZAfP.jpg"
           },
           {
@@ -55,6 +64,7 @@ export default {
             description: "Story Description",
             author: "Henrietta Dinsmore",
             duration: 1600,
+            mediaSrc: getAudioUrl("1TemxoDxkflNVGUKUEdtpY0oQXkEJ1OT3"),
             imgSrc: "https://i.imgur.com/Om5JAZy.jpg"
           }
         ]

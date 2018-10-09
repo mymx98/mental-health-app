@@ -23,6 +23,7 @@
       </div>
     </div>
     <MediaPlayerContainer :visible='playerVisible'
+                          :media='media'
                           @close='closePlayer'>
       Sleep
     </MediaPlayerContainer>
@@ -48,6 +49,7 @@ export default {
   // },
   data() {
     return {
+      media: null,
       list: [],
       playerVisible: false
     };
@@ -58,6 +60,7 @@ export default {
       this.$store.dispatch("navigationVisible", false);
       // this.$store.dispatch("mediaPlayerContainerVisible", true);
       this.playerVisible = true;
+      this.media = item;
       this.$store.dispatch("blur", true);
     },
     closePlayer() {
