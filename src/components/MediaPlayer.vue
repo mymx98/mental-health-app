@@ -39,6 +39,7 @@
               <button type='button'
                       class='player-button'
                       id="play-btn"
+                      ref='playPauseButton'
                       @click='togglePlayerStatus'>
                 <Pause v-if='playerStatus === "playing"'
                        class='player-icon player-pause-icon' />
@@ -117,6 +118,10 @@ export default {
     seekInterval: {
       type: Number,
       default: 5
+    },
+    autoplay: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -162,9 +167,13 @@ export default {
         this.play();
       }
     },
-    play() {
-      this.player.play();
-      this.playerStatus = "playing";
+    async play() {
+      try {
+        await this.player.play();
+        this.playerStatus = "playing";
+      } catch (e) {
+        this.playerStatus = "paused";
+      }
     },
     pause() {
       this.player.pause();
@@ -237,17 +246,20 @@ export default {
     // this.$refs.player.play();
     this.player = new Audio();
     this.player.src =
-      "https://s3-us-west-2.amazonaws.com/s.cdpn.io/308622/Post%20Malone%20-%20rockstar%20ft.%2021%20Savage%20(1).mp3";
+      "https://drive.google.com/uc?export=download&id=1tHfqEBA0XdxeJRuZEWKcWetzFJivigwH";
     this.player.addEventListener("timeupdate", this.seektimeupdate);
+
     this.player.addEventListener("ended", () => {
       this.player.currentTime = 0;
       this.pause();
     });
+
+    if (this.autoplay) {
+      this.player.addEventListener("canplay", this.play, false);
+    }
     // this.player.loop = true;
-    // this.player.play();
   },
   beforeDestroy() {
-    console.log("beforeDestroy");
     this.destroyPlayer();
   }
 };
