@@ -58,9 +58,14 @@
               </button>
             </div>
           </div>
-          <div id="timeline">
-            <span id="current-time">{{ currentTimeFormatted }}</span>
-            <span id="total-time">{{ mediaDurationFormatted }}</span>
+          <div id="timeline"
+               class='MediaPlayer__timeline'>
+            <div class='MediaPlayer__timestamp-wrapper'>
+              <span id="current-time"
+                    class='MediaPlayer__timestamp'>{{ currentTimeFormatted }}</span>
+              <span id="total-time"
+                    class='MediaPlayer__timestamp'>{{ mediaDurationFormatted }}</span>
+            </div>
             <div class="slider-container"
                  @click='sliderClicked'>
               <div class="slider">
@@ -356,28 +361,42 @@ export default {
     font-size: 1.2em;
   }
 
+  &__timeline {
+    // width: 95%;
+    padding: 0 24px;
+  }
+
+  &__timestamp-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__timestamp {
+    font-size: 1.4em;
+  }
+
   $iphone-color: white;
   $primary-color: #3acfd5;
 
-  #timeline {
-    position: relative;
-    margin: 0 auto;
-    width: 92.5%;
+  // #timeline {
+  //   position: relative;
+  //   margin: 0 auto;
+  //   width: 92.5%;
 
-    span {
-      color: darken(white, 30%);
-      font-size: 7px;
-      position: absolute;
-      top: -10px;
+  //   span {
+  //     color: darken(white, 30%);
+  //     font-size: 7px;
+  //     position: absolute;
+  //     top: -10px;
 
-      &#current-time {
-        left: 0;
-      }
-      &#total-time {
-        right: 0;
-      }
-    }
-  }
+  //     &#current-time {
+  //       left: 0;
+  //     }
+  //     &#total-time {
+  //       right: 0;
+  //     }
+  //   }
+  // }
 
   .slider-container {
     padding: 24px 0;
