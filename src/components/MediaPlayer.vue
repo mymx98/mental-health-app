@@ -34,7 +34,10 @@
                       @click='rewind'>
                 <Rotate class='player-icon' />
               </button>
-              <button type='button'
+              <Loading v-if='loadingMedia'
+                       class='player-icon player-loading-icon' />
+              <button v-else
+                      type='button'
                       class='player-button'
                       id="play-btn"
                       ref='playPauseButton'
@@ -105,6 +108,7 @@ import Pause from "@/assets/icons/Pause.svg";
 import Square from "@/assets/icons/Square.svg";
 import ChevronDown from "@/assets/icons/ChevronDown.svg";
 import Sliders from "@/assets/icons/Sliders.svg";
+import Loading from "@/assets/icons/Loading.svg";
 
 function pad(val, size) {
   var s = String(val);
@@ -134,7 +138,8 @@ export default {
     Pause,
     Square,
     ChevronDown,
-    Sliders
+    Sliders,
+    Loading
   },
   props: {
     media: {
@@ -152,6 +157,7 @@ export default {
   },
   data() {
     return {
+      loadingMedia: false,
       currentTime: 0,
       mediaDuration: 0,
       playerStatus: "paused" // 'playing', 'paused', 'stopped'
@@ -250,6 +256,7 @@ export default {
   },
   mounted() {
     // this.$refs.player.play();
+    this.loadingMedia = true;
     this.player = new Audio();
     this.player.src = this.media.mediaSrc;
     this.player.addEventListener("timeupdate", this.seektimeupdate);
@@ -264,6 +271,7 @@ export default {
       this.player.addEventListener(
         "canplay",
         () => {
+          this.loadingMedia = false;
           this.mediaDuration = this.player.duration;
           this.play();
         },
@@ -445,6 +453,12 @@ export default {
     stroke: $color-white;
     width: 36px;
     height: 36px;
+  }
+
+  .player-loading-icon {
+    padding: 1px 7px 2px 7px;
+    width: 72px;
+    height: 72px;
   }
 
   .player-play-icon,
