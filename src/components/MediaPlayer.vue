@@ -364,30 +364,34 @@ export default {
     cursor: pointer;
   }
 
+  $slider-height: 2px;
+
   .slider {
     background-color: darken(white, 50%);
     border-radius: 2px;
     cursor: pointer;
-    height: 2px;
+    height: $slider-height;
     position: relative;
     width: 100%;
 
-    div.progress {
+    .progress {
       background-color: $primary-color;
       height: 100%;
       pointer-events: none;
       position: absolute;
       width: 0;
 
-      div.pin {
+      $pin-size: 16px;
+
+      .pin {
         background-color: white;
-        border-radius: 8px;
-        height: 8px;
+        border-radius: 100%;
+        width: $pin-size;
+        height: $pin-size;
         position: absolute;
         pointer-events: all;
-        right: -5px;
-        top: -3px;
-        width: 8px;
+        right: -$pin-size/2;
+        top: -$pin-size/2 + $slider-height/2;
         // @include box-shadow(0px 1px 1px 0px rgba(0, 0, 0, 0.32));
         // @include transition(transform 0.25s ease);
 
