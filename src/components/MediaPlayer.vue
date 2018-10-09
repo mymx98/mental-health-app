@@ -1,86 +1,95 @@
 <template>
   <div class='MediaPlayer'>
-    <FocusLock returnFocus>
-      <div class='MediaPlayer__series'>
-        Daily Calm
-      </div>
-      <div class='MediaPlayer__title'>
-        Non-Attachment
-      </div>
-      <div class='MediaPlayer__subtitle'>
-        Daily Calm
-      </div>
-      <slot />
-      <div>
-        <div id="controls">
-          <button type='button'
-                  class='player-button'
-                  id="previous-btn"
-                  @click='rewind'>
-            <Rotate class='player-icon' />
-          </button>
-          <button type='button'
-                  class='player-button'
-                  id="play-btn"
-                  @click='togglePlayerStatus'>
-            <Pause v-if='playerStatus === "playing"'
-                   class='player-icon' />
-            <Play v-else
-                  class='player-icon' />
-          </button>
-          <button type='button'
-                  class='player-button'
-                  id="next-btn"
-                  @click='forward'>
-            <Rotate class='player-icon player-icon-forward' />
-          </button>
-          <button type='button'
-                  class='player-button'
-                  id="player-Square-button"
-                  @click='stop'>
-            <Square class='player-icon' />
-          </button>
-        </div>
-        <div id="timeline">
-          <span id="current-time">--:--</span>
-          <span id="total-time">--:--</span>
-          <div class="slider"
-               data-direction="horizontal">
-            <div class="progress"
-                 :style='progressStyles'>
-              <div class="pin"
-                   id="progress-pin"
-                   data-method="rewind"></div>
-            </div>
+    <FocusLock returnFocus
+               class='lock-container'
+               lockContainerClass='lock-container-inner'>
+      <button type='button'
+              class='MediaPlayer__close button--no-style'
+              @click='close'>
+        <ChevronDown />
+      </button>
+      <div class='MediaPlayer__content'>
+        <div class='MediaPlayer__track-info'>
+          <div class='MediaPlayer__series'>
+            Daily Calm
+          </div>
+          <div class='MediaPlayer__title'>
+            Non-Attachment
+          </div>
+          <div class='MediaPlayer__subtitle'>
+            Daily Calm
           </div>
         </div>
-        <div id="sub-controls">
-          <i class="fa fa-random"
-             aria-hidden="true"></i>
-          <i class="fa fa-refresh"
-             aria-hidden="true"></i>
-          <i class="fa fa-bluetooth-b active"
-             id="bluetooth-btn"
-             aria-hidden="true"></i>
-          <i class="fa fa-heart-o"
-             id="heart-icon"
-             aria-hidden="true"></i>
+        <!-- <slot /> -->
+        <div class='MediaPlayer__controls'>
+          <div id="controls">
+            <button type='button'
+                    class='player-button'
+                    id="previous-btn"
+                    @click='rewind'>
+              <Rotate class='player-icon' />
+            </button>
+            <button type='button'
+                    class='player-button'
+                    id="play-btn"
+                    @click='togglePlayerStatus'>
+              <Pause v-if='playerStatus === "playing"'
+                     class='player-icon' />
+              <Play v-else
+                    class='player-icon' />
+            </button>
+            <button type='button'
+                    class='player-button'
+                    id="next-btn"
+                    @click='forward'>
+              <Rotate class='player-icon player-icon-forward' />
+            </button>
+            <button type='button'
+                    class='player-button'
+                    id="player-Square-button"
+                    @click='stop'>
+              <Square class='player-icon' />
+            </button>
+          </div>
+          <div id="timeline">
+            <span id="current-time">--:--</span>
+            <span id="total-time">--:--</span>
+            <div class="slider"
+                 data-direction="horizontal">
+              <div class="progress"
+                   :style='progressStyles'>
+                <div class="pin"
+                     id="progress-pin"
+                     data-method="rewind"></div>
+              </div>
+            </div>
+          </div>
+          <div id="sub-controls">
+            <i class="fa fa-random"
+               aria-hidden="true"></i>
+            <i class="fa fa-refresh"
+               aria-hidden="true"></i>
+            <i class="fa fa-bluetooth-b active"
+               id="bluetooth-btn"
+               aria-hidden="true"></i>
+            <i class="fa fa-heart-o"
+               id="heart-icon"
+               aria-hidden="true"></i>
+          </div>
         </div>
       </div>
-      <button type='button'
-              @click='close'>
-        Close
-      </button>
     </FocusLock>
   </div>
 </template>
 
 <script>
-import FocusLock from "vue-focus-lock";
+// import FocusLock from "vue-focus-lock";
+import FocusLock from "@/components/Shared/FocusLock";
 import Rotate from "@/assets/icons/Rotate.svg";
 import Play from "@/assets/icons/Play.svg";
 import Pause from "@/assets/icons/Pause.svg";
 import Square from "@/assets/icons/Square.svg";
+import ChevronDown from "@/assets/icons/ChevronDown.svg";
 
 export default {
   name: "MediaPlayer",
@@ -89,7 +98,8 @@ export default {
     Rotate,
     Play,
     Pause,
-    Square
+    Square,
+    ChevronDown
   },
   data() {
     return {
@@ -181,20 +191,73 @@ export default {
 };
 </script>
 
+<style lang='scss'>
+.lock-container,
+.lock-container-inner {
+  height: 100%;
+}
+</style>
 <style lang='scss' scoped>
 @import "@/styles/variables.scss";
 
 .MediaPlayer {
+  height: 100%;
+  position: relative;
+
+  &__close {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+
+    svg {
+      stroke: $color-white;
+      height: 48px;
+      width: 48px;
+    }
+  }
+
+  &__content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    // .MediaPlayer__controls {
+    //   flex-grow: 1;
+    // }
+  }
+
+  // .MediaPlayer__controls {
+  //   position: absolute;
+  //   bottom: 0;
+  //   left: 100px;
+  // }
+
+  // &__track-info {
+  // }
+
+  &__controls {
+    text-align: center;
+    margin-top: auto;
+  }
+
   &__series {
+    text-align: center;
     font-size: 2em;
+    margin: 48px 0;
   }
 
   &__title {
+    text-align: center;
     font-size: 1.6em;
+    margin-bottom: 24px;
   }
 
   &__subtitle {
+    text-align: center;
     font-size: 1.2em;
+    margin-bottom: 48px;
   }
 
   $iphone-color: white;

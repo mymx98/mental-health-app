@@ -57,31 +57,13 @@ export default {
 @import "@/styles/variables.scss";
 
 .App {
-  // display: flex;
-  // flex-direction: column;
   height: 100%;
-  // height: 100vh;
-  // justify-content: center;
-  // align-items: center;
 
   &__content {
-    // overflow-y: auto;
-    // flex: 1 1 auto;
-    // width: 100%;
-    // max-width: 960px;
-    // height: 100%;
-    // transition: $swift-ease-out;
-    // transition-property: filter;
-    // margin-bottom: 160px;
-
     &--blur {
       filter: blur(5px);
     }
   }
-
-  // &__navigation {
-  //   flex: 0;
-  // }
 
   &__navigation {
     position: fixed;

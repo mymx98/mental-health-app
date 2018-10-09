@@ -96,5 +96,6 @@ export default {
   position: fixed;
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  padding: 24px;
 }
 </style>
