@@ -21,7 +21,11 @@
 // v 1.2.0
 import moveFocusInside, { focusInside } from "focus-lock";
 function deferAction(action) {
-  setImmediate ? setImmediate(action) : setTimeout(action, 1);
+  if (typeof setImmediate !== "undefined") {
+    setImmediate(action);
+  } else {
+    setTimeout(action, 1);
+  }
 }
 let lastActiveTrap = 0;
 let lastActiveFocus = null;

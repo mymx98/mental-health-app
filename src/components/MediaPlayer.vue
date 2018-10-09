@@ -113,6 +113,12 @@ export default {
     ChevronDown,
     Sliders
   },
+  props: {
+    seekInterval: {
+      type: Number,
+      default: 5
+    }
+  },
   data() {
     return {
       playerProgress: 0,
@@ -164,8 +170,22 @@ export default {
       this.player.pause();
       this.playerStatus = "paused";
     },
-    rewind() {},
-    forward() {},
+    rewind() {
+      let targetTime = this.player.currentTime - this.seekInterval;
+      if (targetTime < 0) {
+        targetTime = 0;
+      }
+
+      this.player.currentTime = targetTime;
+    },
+    forward() {
+      let targetTime = this.player.currentTime + this.seekInterval;
+      if (targetTime > this.player.duration) {
+        targetTime = this.player.duration;
+      }
+
+      this.player.currentTime = targetTime;
+    },
     stop() {
       this.close();
     },
@@ -317,7 +337,7 @@ export default {
   }
 
   $iphone-color: white;
-  $primary-color: #e74c3c;
+  $primary-color: #3acfd5;
 
   #timeline {
     position: relative;
@@ -388,6 +408,10 @@ export default {
   .player-pause-icon {
     width: 72px;
     height: 72px;
+  }
+
+  .player-icon-forward {
+    transform: scale(-1, 1);
   }
 
   .settings-icon {
