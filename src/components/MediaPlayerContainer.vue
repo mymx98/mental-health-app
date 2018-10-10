@@ -1,34 +1,102 @@
 <template>
   <portal to="media-player">
     <TransitionSlideFromBottom>
-      <div v-if='visible'
+      <div v-if='visible && !minimized'
            class='MediaPlayerContainer'>
-        <MediaPlayer class='MediaPlayer'
+        <!-- <MediaPlayer class='MediaPlayer'
                      :media='media'
                      autoplay
-                     v-on='$listeners' />
+                     v-on='$listeners' /> -->
+        <MediaPlayer class='MediaPlayer'
+                     :media='media'
+                     :loading='false'
+                     :currentTime='40'
+                     :duration='100'
+                     playerStatus='paused'
+                     @minimize='minimize'
+                     @rewind='rewind'
+                     @pause='pause'
+                     @play='play'
+                     @forward='forward'
+                     @seek='seek'
+                     @stop='stop' />
+
       </div>
     </TransitionSlideFromBottom>
+    <MediaPlayerMinimized :visible='visible && minimized'
+                          :media='media'
+                          @maximize='maximize' />
   </portal>
 </template>
 
 <script>
 import TransitionSlideFromBottom from "@/components/Shared/TransitionSlideFromBottom";
 import MediaPlayer from "@/components/MediaPlayer";
+import MediaPlayerMinimized from "@/components/MediaPlayerMinimized";
 
 export default {
   name: "MediaPlayerContainer",
   components: {
     MediaPlayer,
+    MediaPlayerMinimized,
     TransitionSlideFromBottom
   },
   props: {
-    visible: {
-      type: Boolean,
-      default: false
-    },
+    // visible: {
+    //   type: Boolean,
+    //   default: false
+    // },
     media: {
       type: Object
+    }
+  },
+  watch: {
+    media(val) {
+      console.log("media watcher", val);
+      if (val) {
+        this.maximize();
+      }
+    }
+  },
+  data() {
+    return {
+      visible: false,
+      minimized: false
+    };
+  },
+  methods: {
+    maximize() {
+      console.log("maximize");
+      this.visible = true;
+      this.minimized = false;
+      this.$store.dispatch("blur", true);
+      this.$store.dispatch("navigationVisible", false);
+    },
+    minimize() {
+      console.log("minimize");
+      this.minimized = true;
+    },
+    rewind() {
+      console.log("rewind");
+    },
+    pause() {
+      console.log("pause");
+    },
+    play() {
+      console.log("play");
+    },
+    forward() {
+      console.log("forward");
+    },
+    seek() {
+      console.log("seek");
+    },
+    stop() {
+      console.log("stop");
+      this.visible = false;
+      this.$store.dispatch("blur", false);
+      this.$store.dispatch("navigationVisible", true);
+      this.$emit("close");
     }
   }
 };

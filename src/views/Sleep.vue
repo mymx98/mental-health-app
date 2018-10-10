@@ -27,9 +27,9 @@
                           :media='media'
                           @minimize='minimize'
                           @close='closePlayer' />
-    <MediaPlayerMinimized :visible='playerVisible && playerMinimized'
+    <!-- <MediaPlayerMinimized :visible='playerVisible && playerMinimized'
                           :media='media'
-                          @maximize='maximize' />
+                          @maximize='maximize' /> -->
   </div>
 </template>
 
@@ -64,19 +64,21 @@ export default {
     itemClicked(item) {
       // this.store.dispatch('')
       // console.log("itemClicked", item);
-      this.$store.dispatch("navigationVisible", false);
-      // this.$store.dispatch("mediaPlayerContainerVisible", true);
-      this.playerVisible = true;
-      this.playerMinimized = false;
+
       this.media = item;
-      this.$store.dispatch("blur", true);
+
+      // this.$store.dispatch("navigationVisible", false);
+      // this.$store.dispatch("mediaPlayerContainerVisible", true);
+      // this.playerVisible = true;
+      // this.playerMinimized = false;
+      // this.media = item;
+      // this.$store.dispatch("blur", true);
     },
     closePlayer() {
-      this.$store.dispatch("blur", false);
-      this.playerVisible = false;
+      // this.$store.dispatch("blur", false);
+      // this.playerVisible = false;
       this.media = null;
-      this.$store.dispatch("navigationVisible", true);
-      // this.$store.dispatch("mediaPlayerContainerVisible", true);
+      // this.$store.dispatch("navigationVisible", true);
     },
     minimize() {
       console.log("minimize");

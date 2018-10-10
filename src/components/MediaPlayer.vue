@@ -26,37 +26,38 @@
             <div class='MediaPlayer__controls-primary'>
               <button type='button'
                       class='player-button'
-                      @click='settings'>
+                      @click='$emit("settings")'>
                 <Sliders class='player-icon settings-icon' />
               </button>
               <button type='button'
                       class='player-button'
-                      @click='rewind'>
+                      @click='$emit("rewind")'>
                 <Rotate class='player-icon' />
               </button>
-              <Loading v-if='loadingMedia'
+              <Loading v-if='loading'
                        class='player-icon player-loading-icon' />
+              <button v-else-if='playerStatus === "playing"'
+                      type='button'
+                      class='player-button'
+                      @click='$emit("pause")'>
+                <Pause class='player-icon player-pause-icon' />
+              </button>
               <button v-else
                       type='button'
                       class='player-button'
-                      id="play-btn"
-                      ref='playPauseButton'
-                      @click='togglePlayerStatus'>
-                <Pause v-if='playerStatus === "playing"'
-                       class='player-icon player-pause-icon' />
-                <Play v-else
-                      class='player-icon player-play-icon' />
+                      @click='$emit("play")'>
+                <Play class='player-icon player-play-icon' />
               </button>
               <button type='button'
                       class='player-button'
                       id="next-btn"
-                      @click='forward'>
+                      @click='$emit("forward")'>
                 <Rotate class='player-icon player-icon-forward' />
               </button>
               <button type='button'
                       class='player-button'
                       id="player-Square-button"
-                      @click='stop'>
+                      @click='$emit("stop")'>
                 <Square class='player-icon' />
               </button>
             </div>
@@ -153,14 +154,30 @@ export default {
     autoplay: {
       type: Boolean,
       default: false
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    currentTime: {
+      type: Number,
+      default: 0
+    },
+    duration: {
+      type: Number,
+      default: 0
+    },
+    playerStatus: {
+      type: String,
+      default: "paused" // 'playing', 'paused', 'stopped'
     }
   },
   data() {
     return {
-      loadingMedia: false,
-      currentTime: 0,
-      mediaDuration: 0,
-      playerStatus: "paused" // 'playing', 'paused', 'stopped'
+      // loadingMedia: false,
+      // currentTime: 0,
+      // mediaDuration: 0,
+      // playerStatus: "paused" // 'playing', 'paused', 'stopped'
     };
   },
   computed: {
@@ -170,8 +187,8 @@ export default {
       };
     },
     playerProgress() {
-      if (this.currentTime && this.player && this.player.duration) {
-        return this.currentTime * (100 / this.player.duration);
+      if (this.currentTime && this.duration) {
+        return this.currentTime * (100 / this.duration);
       } else {
         return 0;
       }
@@ -180,7 +197,7 @@ export default {
       return formattedTimeStamp(this.currentTime);
     },
     mediaDurationFormatted() {
-      return formattedTimeStamp(this.mediaDuration);
+      return formattedTimeStamp(this.duration);
     }
   },
   methods: {
@@ -197,62 +214,64 @@ export default {
       );
 
       const sliderFactor = e.offsetX / e.target.clientWidth;
-      this.player.currentTime = this.player.duration * sliderFactor;
-    },
-    togglePlayerStatus() {
-      if (this.playerStatus === "playing") {
-        this.playerStatus = "paused";
-        this.pause();
-      } else {
-        this.playerStatus = "playing";
-        this.play();
-      }
-    },
-    async play() {
-      try {
-        await this.player.play();
-        this.playerStatus = "playing";
-      } catch (e) {
-        this.playerStatus = "paused";
-      }
-    },
-    pause() {
-      this.player.pause();
-      this.playerStatus = "paused";
-    },
-    rewind() {
-      let targetTime = this.player.currentTime - this.seekInterval;
-      if (targetTime < 0) {
-        targetTime = 0;
-      }
 
-      this.player.currentTime = targetTime;
-    },
-    forward() {
-      let targetTime = this.player.currentTime + this.seekInterval;
-      if (targetTime > this.player.duration) {
-        targetTime = this.player.duration;
-      }
-
-      this.player.currentTime = targetTime;
-    },
-    stop() {
-      this.close();
-    },
-    seektimeupdate() {
-      if (this.player) {
-        this.currentTime = this.player.currentTime;
-      }
-    },
-    destroyPlayer() {
-      if (this.player) {
-        this.player.pause();
-        this.player.src = "";
-        this.player.load();
-        this.player.remove();
-        this.player = null;
-      }
+      this.$emit("seek", this.duration * sliderFactor);
+      // this.player.currentTime = this.player.duration * sliderFactor;
     }
+    // togglePlayerStatus() {
+    //   if (this.playerStatus === "playing") {
+    //     this.playerStatus = "paused";
+    //     this.pause();
+    //   } else {
+    //     this.playerStatus = "playing";
+    //     this.play();
+    //   }
+    // },
+    // async play() {
+    //   try {
+    //     await this.player.play();
+    //     this.playerStatus = "playing";
+    //   } catch (e) {
+    //     this.playerStatus = "paused";
+    //   }
+    // },
+    // pause() {
+    //   this.player.pause();
+    //   this.playerStatus = "paused";
+    // },
+    // rewind() {
+    //   let targetTime = this.player.currentTime - this.seekInterval;
+    //   if (targetTime < 0) {
+    //     targetTime = 0;
+    //   }
+
+    //   this.player.currentTime = targetTime;
+    // },
+    // forward() {
+    //   let targetTime = this.player.currentTime + this.seekInterval;
+    //   if (targetTime > this.player.duration) {
+    //     targetTime = this.player.duration;
+    //   }
+
+    //   this.player.currentTime = targetTime;
+    // },
+    // stop() {
+    //   this.close();
+    // },
+    // seektimeupdate() {
+    //   if (this.player) {
+    //     this.currentTime = this.player.currentTime;
+    //   }
+    // },
+    // destroyPlayer() {
+    //   if (this.player) {
+    //     this.player.pause();
+    //     this.player.src = "";
+    //     this.player.load();
+    //     this.player.remove();
+    //     this.player = null;
+    //   }
+    // }
   },
   mounted() {
     // this.$refs.player.play();
@@ -279,10 +298,10 @@ export default {
       );
     }
     // this.player.loop = true;
-  },
-  beforeDestroy() {
-    this.destroyPlayer();
   }
+  // beforeDestroy() {
+  //   this.destroyPlayer();
+  // }
 };
 </script>
 
