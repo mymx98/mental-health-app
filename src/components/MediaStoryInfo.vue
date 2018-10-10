@@ -1,6 +1,6 @@
 <template>
   <div class='MediaStoryInfo'>
-    <div class='MediaStory__narrator-profile'>
+    <div class='MediaStoryInfo__narrator-profile'>
       <img :src='media.narratorProfileSrc'
            class='MediaStoryInfo__narrator-profile-img' />
     </div>
@@ -47,6 +47,10 @@ export default {
   text-align: center;
   max-width: 375px;
   width: 100%;
+
+  &__narrator-profile {
+    margin: 24px 0;
+  }
 
   &__narrator-profile-img {
     width: 96px;

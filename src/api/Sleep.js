@@ -1,5 +1,8 @@
 export default {
   async getSleepStories() {
+    const description =
+      "Lorem ipsum dolor amet tote bag salvia celiac iPhone swag, kombucha mixtape pitchfork before they sold out. Flannel scenester bespoke biodiesel pork belly. Food truck tilde skateboard aesthetic before they sold out franzen.";
+
     return {
       data: {
         data: [
@@ -8,7 +11,7 @@ export default {
             createdAt: 1538852003928,
             title: "The Orient Express",
             type: "story",
-            description: "Story Description",
+            description,
             author: "Myles Sinclair",
             narrator: "Charlotte Nguyen",
             narratorProfileSrc:
@@ -23,7 +26,7 @@ export default {
             createdAt: 1538852003928,
             title: "The Velveteen Rabbit",
             type: "story",
-            description: "Story Description",
+            description,
             author: "Gideon McCaskey",
             narrator: "Clifton Wade",
             narratorProfileSrc:
@@ -38,7 +41,7 @@ export default {
             createdAt: 1538852003928,
             title: "Agents Of Utopia",
             type: "story",
-            description: "Story Description",
+            description,
             author: "Electa Caldwell",
             narrator: "Tiffany Phillips",
             narratorProfileSrc:
@@ -53,7 +56,7 @@ export default {
             createdAt: 1538852003928,
             title: "City In The River",
             type: "story",
-            description: "Story Description",
+            description,
             author: "Ellen Irwin",
             narrator: "Beverley George",
             narratorProfileSrc:
@@ -68,7 +71,7 @@ export default {
             createdAt: 1538852003928,
             title: "The Wizard Of Whispers",
             type: "story",
-            description: "Story Description",
+            description,
             author: "Dorothy Clement",
             narrator: "Ted Campbell",
             narratorProfileSrc:
@@ -83,7 +86,7 @@ export default {
             createdAt: 1538852003928,
             title: "Lurking In The Mountains",
             type: "story",
-            description: "Story Description",
+            description,
             author: "Henrietta Dinsmore",
             narrator: "Claire Larson",
             narratorProfileSrc:
