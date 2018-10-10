@@ -9,7 +9,8 @@
         <ChevronDown />
       </button>
       <div class='MediaPlayer__content'>
-        <div class='MediaPlayer__track-info'>
+        <slot />
+        <!-- <div class='MediaPlayer__track-info'>
           <div class='MediaPlayer__series'>
             Daily Calm
           </div>
@@ -19,8 +20,7 @@
           <div class='MediaPlayer__subtitle'>
             Daily Calm
           </div>
-        </div>
-        <!-- <slot /> -->
+        </div> -->
         <div class='MediaPlayer__controls'>
           <div class='MediaPlayer__controls-primary-container'>
             <div class='MediaPlayer__controls-primary'>

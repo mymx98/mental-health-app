@@ -19,7 +19,13 @@
                      @play='play'
                      @forward='forward'
                      @seek='seek'
-                     @stop='stop' />
+                     @stop='stop'>
+          <!-- <div v-if='media.type === "sleep"'> -->
+          <div class='MediaPlayerContainer__media-info'>
+            <MediaStoryInfo v-if='media.type === "story"'
+                            :media='media' />
+          </div>
+        </MediaPlayer>
 
       </div>
     </TransitionSlideFromBottom>
@@ -33,12 +39,14 @@
 import TransitionSlideFromBottom from "@/components/Shared/TransitionSlideFromBottom";
 import MediaPlayer from "@/components/MediaPlayer";
 import MediaPlayerMinimized from "@/components/MediaPlayerMinimized";
+import MediaStoryInfo from "@/components/MediaStoryInfo";
 
 export default {
   name: "MediaPlayerContainer",
   components: {
     MediaPlayer,
     MediaPlayerMinimized,
+    MediaStoryInfo,
     TransitionSlideFromBottom
   },
   props: {
@@ -51,10 +59,12 @@ export default {
     }
   },
   watch: {
-    media(val) {
+    media(val, previousVal) {
       console.log("media watcher", val);
       if (val) {
-        this.maximize();
+        if (!previousVal) {
+          this.maximize();
+        }
       }
     }
   },
@@ -74,7 +84,10 @@ export default {
     },
     minimize() {
       console.log("minimize");
+      this.visible = true;
       this.minimized = true;
+      this.$store.dispatch("blur", false);
+      this.$store.dispatch("navigationVisible", true);
     },
     rewind() {
       console.log("rewind");
@@ -114,5 +127,10 @@ export default {
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 24px;
+
+  &__media-info {
+    display: flex;
+    justify-content: center;
+  }
 }
 </style>
