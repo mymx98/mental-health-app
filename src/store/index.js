@@ -1,14 +1,19 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import mediaPlayer from "./mediaPlayer";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  modules: {
+    mediaPlayer
+  },
   state: {
     blur: false,
     navigationVisible: true,
     mediaPlayerVisible: false,
-    mediaPlayerFloatingVisible: false
+    mediaPlayerFloatingVisible: false,
+    mediaSrc: ""
   },
   getters: {
     blur(state) {

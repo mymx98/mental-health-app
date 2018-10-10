@@ -22,6 +22,7 @@
                               @click.native='itemClicked(item)' />
       </div>
     </div>
+    <!-- <MediaPlayer :media='media' v-if='media'/> -->
     <MediaPlayerContainer :visible='playerVisible && !playerMinimized'
                           :media='media'
                           @minimize='minimize'
@@ -61,6 +62,7 @@ export default {
   },
   methods: {
     itemClicked(item) {
+      // this.store.dispatch('')
       // console.log("itemClicked", item);
       this.$store.dispatch("navigationVisible", false);
       // this.$store.dispatch("mediaPlayerContainerVisible", true);
@@ -86,7 +88,7 @@ export default {
     },
     maximize() {
       console.log("maximize");
-      this.$store.dispatch("navigationVisible", true);
+      this.$store.dispatch("navigationVisible", false);
       this.$store.dispatch("blur", true);
       this.playerVisible = true;
       this.playerMinimized = false;
