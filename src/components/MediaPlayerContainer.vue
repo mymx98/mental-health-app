@@ -3,10 +3,6 @@
     <TransitionSlideFromBottom>
       <div v-if='visible && !minimized'
            class='MediaPlayerContainer'>
-        <!-- <MediaPlayer class='MediaPlayer'
-                     :media='media'
-                     autoplay
-                     v-on='$listeners' /> -->
         <MediaPlayer class='MediaPlayer'
                      :media='media'
                      :loading='false'
@@ -20,7 +16,6 @@
                      @forward='forward'
                      @seek='seek'
                      @stop='stop'>
-          <!-- <div v-if='media.type === "sleep"'> -->
           <div class='MediaPlayerContainer__media-info'>
             <MediaStoryInfo v-if='media.type === "story"'
                             :media='media' />
@@ -54,12 +49,12 @@ export default {
     TransitionSlideFromBottom
   },
   props: {
-    // visible: {
-    //   type: Boolean,
-    //   default: false
-    // },
     media: {
       type: Object
+    },
+    seekInterval: {
+      type: Number,
+      default: 5
     },
     autoplay: {
       type: Boolean,
@@ -68,9 +63,8 @@ export default {
   },
   watch: {
     media(val, previousVal) {
-      console.log("media watcher", val, previousVal);
       if (val) {
-        if (this.playerStatus === "playing") {
+        if (this.playerStatus === "playing" || this.playerStatus === "paused") {
           this.player.src = this.media.mediaSrc;
           this.play();
         }
@@ -94,14 +88,12 @@ export default {
   },
   methods: {
     maximize() {
-      console.log("maximize");
       this.visible = true;
       this.minimized = false;
       this.$store.dispatch("blur", true);
       this.$store.dispatch("navigationVisible", false);
     },
     minimize() {
-      console.log("minimize");
       this.visible = true;
       this.minimized = true;
       this.$store.dispatch("blur", false);
@@ -135,12 +127,12 @@ export default {
       if (targetTime > this.player.duration) {
         targetTime = this.player.duration;
       }
+
+      this.player.currentTime = targetTime;
     },
     seek(time) {
-      // console.log("seek");
       if (this.player) {
         this.player.currentTime = time;
-        // this.currentTime = this.player.currentTime;
       }
     },
     stop() {
@@ -153,28 +145,6 @@ export default {
       this.$store.dispatch("blur", false);
       this.$store.dispatch("navigationVisible", true);
       this.$emit("close");
-    },
-    sliderClicked(e) {
-      console.log(
-        "sliderClicked",
-        e.offsetX,
-        e.target.clientWidth,
-        (e.offsetX / e.target.clientWidth) * 100
-      );
-
-      const sliderFactor = e.offsetX / e.target.clientWidth;
-
-      this.$emit("seek", this.duration * sliderFactor);
-      // this.player.currentTime = this.player.duration * sliderFactor;
-    },
-    togglePlayerStatus() {
-      if (this.playerStatus === "playing") {
-        this.playerStatus = "paused";
-        this.pause();
-      } else {
-        this.playerStatus = "playing";
-        this.play();
-      }
     },
     seektimeupdate() {
       if (this.player) {
@@ -192,10 +162,8 @@ export default {
     }
   },
   mounted() {
-    // this.$refs.player.play();
     this.loading = true;
     this.player = new Audio();
-    // this.player.src = this.media.mediaSrc;
     this.player.addEventListener("timeupdate", this.seektimeupdate);
 
     this.player.addEventListener("ended", () => {
@@ -214,6 +182,9 @@ export default {
         false
       );
     }
+  },
+  beforeDestroy() {
+    this.destroyPlayer();
   }
 };
 </script>
