@@ -9,7 +9,9 @@
         <ChevronDown />
       </button>
       <div class='MediaPlayer__content'>
-        <slot />
+        <div class='MediaPlayer__media-info'>
+          <slot />
+        </div>
         <div class='MediaPlayer__controls'>
           <div class='MediaPlayer__controls-primary-container'>
             <div class='MediaPlayer__controls-primary'>
@@ -206,28 +208,23 @@ export default {
   }
 
   &__content {
+    // Flex container
     height: 100%;
     display: flex;
     flex-direction: column;
-
-    // .MediaPlayer__controls {
-    //   flex-grow: 1;
-    // }
   }
 
-  // .MediaPlayer__controls {
-  //   position: absolute;
-  //   bottom: 0;
-  //   left: 100px;
-  // }
-
-  &__track-info {
-    margin: 96px 0;
+  &__media-info {
+    flex: 1 0 auto; /* 2 */
+    height: 200px;
+    overflow-y: scroll;
+    // height: calc(100vh - #{224px});
   }
 
   &__controls {
     text-align: center;
-    margin-top: auto;
+    // margin-top: auto;
+    flex: none; /* 2 */
   }
 
   &__controls-primary-container {

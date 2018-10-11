@@ -186,6 +186,8 @@ export default {
     }
   },
   beforeDestroy() {
+    this.$store.dispatch("blur", false);
+    this.$store.dispatch("navigationVisible", true);
     this.destroyPlayer();
   }
 };
