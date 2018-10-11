@@ -65,7 +65,7 @@ export default {
   watch: {
     media(val, previousVal) {
       if (val) {
-        this.loading = true;
+        // this.loading = true;
         if (this.playerStatus === "playing" || this.playerStatus === "paused") {
           this.player.src = this.media.mediaSrc;
           this.play();
@@ -133,7 +133,7 @@ export default {
       this.player.currentTime = targetTime;
     },
     seek(time) {
-      this.loading = true;
+      // this.loading = true;
       if (this.player) {
         this.player.currentTime = time;
       }
@@ -177,7 +177,7 @@ export default {
       this.player.addEventListener(
         "canplay",
         () => {
-          this.loading = false;
+          // this.loading = false;
           this.duration = this.player.duration;
           this.play();
         },
