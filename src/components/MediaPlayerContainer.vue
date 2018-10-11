@@ -5,7 +5,7 @@
            class='MediaPlayerContainer'>
         <MediaPlayer class='MediaPlayer'
                      :media='media'
-                     :loading='false'
+                     :loading='loading'
                      :currentTime='currentTime'
                      :duration='duration'
                      :playerStatus='playerStatus'
@@ -26,6 +26,7 @@
     </TransitionSlideFromBottom>
     <MediaPlayerMinimized :visible='visible && minimized'
                           :media='media'
+                          :loading='loading'
                           :currentTime='currentTime'
                           :playerStatus='playerStatus'
                           @pause='pause'
@@ -64,6 +65,7 @@ export default {
   watch: {
     media(val, previousVal) {
       if (val) {
+        this.loading = true;
         if (this.playerStatus === "playing" || this.playerStatus === "paused") {
           this.player.src = this.media.mediaSrc;
           this.play();
@@ -131,6 +133,7 @@ export default {
       this.player.currentTime = targetTime;
     },
     seek(time) {
+      this.loading = true;
       if (this.player) {
         this.player.currentTime = time;
       }
@@ -162,7 +165,6 @@ export default {
     }
   },
   mounted() {
-    this.loading = true;
     this.player = new Audio();
     this.player.addEventListener("timeupdate", this.seektimeupdate);
 

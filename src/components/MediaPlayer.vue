@@ -23,8 +23,11 @@
                       @click='$emit("rewind")'>
                 <Rotate class='player-icon' />
               </button>
-              <Loading v-if='loading'
-                       class='player-icon player-loading-icon' />
+              <button v-if='loading'
+                      type='button'
+                      class='player-button button--no-style'>
+                <Loading class='player-icon player-loading-icon' />
+              </button>
               <button v-else-if='playerStatus === "playing"'
                       type='button'
                       class='player-button button--no-style'
@@ -346,8 +349,8 @@ export default {
 
   .player-loading-icon {
     padding: 1px 7px 2px 7px;
-    width: 72px;
-    height: 72px;
+    width: 62px;
+    height: 70px;
   }
 
   .player-play-icon,
