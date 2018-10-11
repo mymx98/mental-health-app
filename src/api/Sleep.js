@@ -11,6 +11,7 @@ export default {
             createdAt: 1538852003928,
             title: "The Orient Express",
             type: "story",
+            category: "",
             description,
             author: "Myles Sinclair",
             narrator: "Charlotte Nguyen",

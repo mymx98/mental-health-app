@@ -64,8 +64,9 @@ export default {
   }
 
   &__description {
-    font-size: 1.2em;
+    font-size: 1.1em;
     margin-bottom: 32px;
+    line-height: 1.4em;
   }
 
   &__contributors {

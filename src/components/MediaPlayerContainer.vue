@@ -31,6 +31,9 @@
     </TransitionSlideFromBottom>
     <MediaPlayerMinimized :visible='visible && minimized'
                           :media='media'
+                          :currentTime='40'
+                          @pause='pause'
+                          @play='play'
                           @maximize='maximize' />
   </portal>
 </template>
@@ -121,7 +124,6 @@ export default {
 .MediaPlayerContainer {
   width: 100%;
   height: 100%;
-  // border: 3px solid white;
   box-sizing: border-box;
   position: fixed;
   top: 0;

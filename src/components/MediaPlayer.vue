@@ -25,12 +25,12 @@
           <div class='MediaPlayer__controls-primary-container'>
             <div class='MediaPlayer__controls-primary'>
               <button type='button'
-                      class='player-button'
+                      class='player-button button--no-style'
                       @click='$emit("settings")'>
                 <Sliders class='player-icon settings-icon' />
               </button>
               <button type='button'
-                      class='player-button'
+                      class='player-button button--no-style'
                       @click='$emit("rewind")'>
                 <Rotate class='player-icon' />
               </button>
@@ -38,24 +38,24 @@
                        class='player-icon player-loading-icon' />
               <button v-else-if='playerStatus === "playing"'
                       type='button'
-                      class='player-button'
+                      class='player-button button--no-style'
                       @click='$emit("pause")'>
                 <Pause class='player-icon player-pause-icon' />
               </button>
               <button v-else
                       type='button'
-                      class='player-button'
+                      class='player-button button--no-style'
                       @click='$emit("play")'>
                 <Play class='player-icon player-play-icon' />
               </button>
               <button type='button'
-                      class='player-button'
+                      class='player-button button--no-style'
                       id="next-btn"
                       @click='$emit("forward")'>
                 <Rotate class='player-icon player-icon-forward' />
               </button>
               <button type='button'
-                      class='player-button'
+                      class='player-button button--no-style'
                       id="player-Square-button"
                       @click='$emit("stop")'>
                 <Square class='player-icon' />
@@ -110,25 +110,7 @@ import Square from "@/assets/icons/Square.svg";
 import ChevronDown from "@/assets/icons/ChevronDown.svg";
 import Sliders from "@/assets/icons/Sliders.svg";
 import Loading from "@/assets/icons/Loading.svg";
-
-function pad(val, size) {
-  var s = String(val);
-  while (s.length < (size || 2)) {
-    s = "0" + s;
-  }
-  return s;
-}
-
-function formattedTimeStamp(timeInSeconds = 0) {
-  if (timeInSeconds) {
-    const minutes = pad(Math.floor(timeInSeconds / 60), 2);
-    const seconds = pad(Math.floor(timeInSeconds % 60), 2);
-
-    return `${minutes}:${seconds}`;
-  } else {
-    return "--:--";
-  }
-}
+import { formattedTimeStamp } from "@/services/TimestampFormatting";
 
 export default {
   name: "MediaPlayer",
@@ -496,17 +478,8 @@ export default {
   }
 
   .player-button {
-    background: none;
-    border: none;
-    line-height: 1;
-    cursor: pointer;
     transition: $swift-ease-out;
     transition-property: stroke, transform;
-
-    // svg {
-    //   transition: $swift-ease-out;
-    //   transition-property: stroke, transform;
-    // }
 
     &:hover {
       transform: scale(1.1);
