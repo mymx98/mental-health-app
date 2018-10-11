@@ -1,8 +1,8 @@
 export default {
   async getSleepStories() {
     const description =
-      "Lorem ipsum dolor amet tote bag salvia celiac iPhone swag, kombucha mixtape pitchfork before they sold out. Flannel scenester bespoke biodiesel pork belly. Food truck tilde skateboard aesthetic before they sold out franzen.";
-
+      "Lorem ipsum dolor amet tote bag salvia celiac iPhone swag, kombucha mixtape pitchfork before they sold out.";
+    // "Lorem ipsum dolor amet tote bag salvia celiac iPhone swag, kombucha mixtape pitchfork before they sold out. Flannel scenester bespoke biodiesel pork belly. Food truck tilde skateboard aesthetic before they sold out franzen.";
     return {
       data: {
         data: [
