@@ -1,10 +1,10 @@
 <template>
   <portal to="media-player-minimized">
     <TransitionSlideFromTop>
-      <div v-if='visible'
-           tabindex="-1"
-           @click='$emit("maximize")'
-           class='MediaPlayerMinimized'>
+      <button v-if='visible'
+              type='button'
+              @click='$emit("maximize")'
+              class='MediaPlayerMinimized '>
         <img :src='media.imgSrc'
              class='MediaPlayerMinimized__image' />
         <div>
@@ -32,7 +32,7 @@
             <Play class='player-icon player-play-icon' />
           </button>
         </div>
-      </div>
+      </button>
     </TransitionSlideFromTop>
   </portal>
 </template>
@@ -117,10 +117,11 @@ $media-player-minimized-padding: 24px;
   cursor: pointer;
   display: flex;
   align-items: center;
+  color: $color-white;
 
   &:focus {
     outline: 0;
-    box-shadow: 0 0 10px rgb(77, 144, 254);
+    box-shadow: 0 0 30px rgb(77, 144, 254);
   }
 
   &__image {

@@ -10,17 +10,6 @@
       </button>
       <div class='MediaPlayer__content'>
         <slot />
-        <!-- <div class='MediaPlayer__track-info'>
-          <div class='MediaPlayer__series'>
-            Daily Calm
-          </div>
-          <div class='MediaPlayer__title'>
-            Non-Attachment
-          </div>
-          <div class='MediaPlayer__subtitle'>
-            Daily Calm
-          </div>
-        </div> -->
         <div class='MediaPlayer__controls'>
           <div class='MediaPlayer__controls-primary-container'>
             <div class='MediaPlayer__controls-primary'>
@@ -101,7 +90,6 @@
 </template>
 
 <script>
-// import FocusLock from "vue-focus-lock";
 import FocusLock from "@/components/Shared/FocusLock";
 import Rotate from "@/assets/icons/Rotate.svg";
 import Play from "@/assets/icons/Play.svg";
@@ -154,14 +142,6 @@ export default {
       default: "paused" // 'playing', 'paused', 'stopped'
     }
   },
-  data() {
-    return {
-      // loadingMedia: false,
-      // currentTime: 0,
-      // mediaDuration: 0,
-      // playerStatus: "paused" // 'playing', 'paused', 'stopped'
-    };
-  },
   computed: {
     progressStyles() {
       return {
@@ -186,104 +166,12 @@ export default {
     close() {
       this.$emit("close");
     },
-    settings() {},
     sliderClicked(e) {
-      console.log(
-        "sliderClicked",
-        e.offsetX,
-        e.target.clientWidth,
-        (e.offsetX / e.target.clientWidth) * 100
-      );
-
       const sliderFactor = e.offsetX / e.target.clientWidth;
 
       this.$emit("seek", this.duration * sliderFactor);
-      // this.player.currentTime = this.player.duration * sliderFactor;
     }
-    // togglePlayerStatus() {
-    //   if (this.playerStatus === "playing") {
-    //     this.playerStatus = "paused";
-    //     this.pause();
-    //   } else {
-    //     this.playerStatus = "playing";
-    //     this.play();
-    //   }
-    // },
-    // async play() {
-    //   try {
-    //     await this.player.play();
-    //     this.playerStatus = "playing";
-    //   } catch (e) {
-    //     this.playerStatus = "paused";
-    //   }
-    // },
-    // pause() {
-    //   this.player.pause();
-    //   this.playerStatus = "paused";
-    // },
-    // rewind() {
-    //   let targetTime = this.player.currentTime - this.seekInterval;
-    //   if (targetTime < 0) {
-    //     targetTime = 0;
-    //   }
-
-    //   this.player.currentTime = targetTime;
-    // },
-    // forward() {
-    //   let targetTime = this.player.currentTime + this.seekInterval;
-    //   if (targetTime > this.player.duration) {
-    //     targetTime = this.player.duration;
-    //   }
-
-    //   this.player.currentTime = targetTime;
-    // },
-    // stop() {
-    //   this.close();
-    // },
-    // seektimeupdate() {
-    //   if (this.player) {
-    //     this.currentTime = this.player.currentTime;
-    //   }
-    // },
-    // destroyPlayer() {
-    //   if (this.player) {
-    //     this.player.pause();
-    //     this.player.src = "";
-    //     this.player.load();
-    //     this.player.remove();
-    //     this.player = null;
-    //   }
-    // }
   }
-  // mounted() {
-  //   // this.$refs.player.play();
-  //   this.loadingMedia = true;
-  //   this.player = new Audio();
-  //   this.player.src = this.media.mediaSrc;
-  //   this.player.addEventListener("timeupdate", this.seektimeupdate);
-
-  //   this.player.addEventListener("ended", () => {
-  //     this.player.currentTime = 0;
-  //     this.pause();
-  //   });
-
-  //   if (this.autoplay) {
-  //     // this.player.addEventListener("canplay", this.play, false);
-  //     this.player.addEventListener(
-  //       "canplay",
-  //       () => {
-  //         this.loadingMedia = false;
-  //         this.mediaDuration = this.player.duration;
-  //         this.play();
-  //       },
-  //       false
-  //     );
-  //   }
-  //   // this.player.loop = true;
-  // }
-  // beforeDestroy() {
-  //   this.destroyPlayer();
-  // }
 };
 </script>
 
