@@ -5,32 +5,36 @@
               type='button'
               @click='$emit("maximize")'
               class='MediaPlayerMinimized '>
-        <img :src='media.imgSrc'
-             class='MediaPlayerMinimized__image' />
-        <div>
-          <div>
-            {{ media.title }}
-          </div>
-          <div>
-            {{ subtitle }}
+        <div class='MediaPlayerMinimized__start'>
+          <img :src='media.imgSrc'
+               class='MediaPlayerMinimized__image' />
+          <div class='MediaPlayerMinimized__info'>
+            <div class='MediaPlayerMinimized__title'>
+              {{ media.title }}
+            </div>
+            <div class='MediaPlayerMinimized__subtitle'>
+              {{ subtitle }}
+            </div>
           </div>
         </div>
-        <div>
-          {{ currentTimeFormatted }}
-        </div>
-        <div>
-          <button v-if='playerStatus === "playing"'
-                  type='button'
-                  class='player-button button--no-style'
-                  @click.stop='$emit("pause")'>
-            <Pause class='player-icon player-pause-icon' />
-          </button>
-          <button v-else
-                  type='button'
-                  class='player-button button--no-style'
-                  @click.stop='$emit("play")'>
-            <Play class='player-icon player-play-icon' />
-          </button>
+        <div class='MediaPlayerMinimized__end'>
+          <div class='MediaPlayerMinimized__timestamp'>
+            {{ currentTimeFormatted }}
+          </div>
+          <div>
+            <button v-if='playerStatus === "playing"'
+                    type='button'
+                    class='player-button button--no-style'
+                    @click.stop='$emit("pause")'>
+              <Pause class='player-icon player-pause-icon' />
+            </button>
+            <button v-else
+                    type='button'
+                    class='player-button button--no-style'
+                    @click.stop='$emit("play")'>
+              <Play class='player-icon player-play-icon' />
+            </button>
+          </div>
         </div>
       </button>
     </TransitionSlideFromTop>
@@ -113,7 +117,7 @@ $media-player-minimized-padding: 24px;
   position: fixed;
   bottom: 100px;
   background-color: rgba(41, 41, 41, 0.75);
-  padding: 12px;
+  padding: 6px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -124,12 +128,49 @@ $media-player-minimized-padding: 24px;
     box-shadow: 0 0 30px rgb(77, 144, 254);
   }
 
-  &__image {
-    width: 64px;
-    height: 64px;
-    border-radius: 100%;
+  &__start {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-  &__content {
+
+  &__image {
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    margin-right: 20px;
+  }
+
+  &__title {
+    margin-bottom: 4px;
+    font-size: 1em;
+  }
+
+  &__subtitle {
+    font-size: 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  &__info {
+    text-align: left;
+  }
+
+  &__end {
+    margin-left: auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__timestamp {
+    font-size: 0.8em;
+    margin-right: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid $color-grey;
   }
 
   .player-icon {
