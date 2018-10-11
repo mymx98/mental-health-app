@@ -254,33 +254,33 @@ export default {
     //     this.player = null;
     //   }
     // }
-  },
-  mounted() {
-    // this.$refs.player.play();
-    this.loadingMedia = true;
-    this.player = new Audio();
-    this.player.src = this.media.mediaSrc;
-    this.player.addEventListener("timeupdate", this.seektimeupdate);
-
-    this.player.addEventListener("ended", () => {
-      this.player.currentTime = 0;
-      this.pause();
-    });
-
-    if (this.autoplay) {
-      // this.player.addEventListener("canplay", this.play, false);
-      this.player.addEventListener(
-        "canplay",
-        () => {
-          this.loadingMedia = false;
-          this.mediaDuration = this.player.duration;
-          this.play();
-        },
-        false
-      );
-    }
-    // this.player.loop = true;
   }
+  // mounted() {
+  //   // this.$refs.player.play();
+  //   this.loadingMedia = true;
+  //   this.player = new Audio();
+  //   this.player.src = this.media.mediaSrc;
+  //   this.player.addEventListener("timeupdate", this.seektimeupdate);
+
+  //   this.player.addEventListener("ended", () => {
+  //     this.player.currentTime = 0;
+  //     this.pause();
+  //   });
+
+  //   if (this.autoplay) {
+  //     // this.player.addEventListener("canplay", this.play, false);
+  //     this.player.addEventListener(
+  //       "canplay",
+  //       () => {
+  //         this.loadingMedia = false;
+  //         this.mediaDuration = this.player.duration;
+  //         this.play();
+  //       },
+  //       false
+  //     );
+  //   }
+  //   // this.player.loop = true;
+  // }
   // beforeDestroy() {
   //   this.destroyPlayer();
   // }

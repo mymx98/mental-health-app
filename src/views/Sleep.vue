@@ -22,7 +22,8 @@
                               @click.native='itemClicked(item)' />
       </div>
     </div>
-    <MediaPlayerContainer :media='media' />
+    <MediaPlayerContainer :media='media'
+                          @close='media = null' />
   </div>
 </template>
 
