@@ -83,7 +83,6 @@
                     style="stop-color:rgb(56,123,218);stop-opacity:1" />
             </linearGradient>
           </defs>
-          <title>Morph</title>
           <circle id="circle2"
                   cx="50"
                   cy="50"
@@ -97,7 +96,15 @@
         </svg>
         <div class='circle-text'>
           <div class='text'>
-            breathe in
+            <Transition name='fade'
+                        mode="out-in">
+              <span v-if='breathingState === BREATHING_STATE.IN'
+                    :key='breathingState'>breathe in</span>
+              <span v-else-if='breathingState === BREATHING_STATE.HOLD'
+                    :key='breathingState'>hold</span>
+              <span v-else
+                    :key='breathingState'>breathe out</span>
+            </Transition>
           </div>
         </div>
       </div>
@@ -108,10 +115,29 @@
 <script>
 import { TimelineMax, Power0 } from "gsap/TweenMax";
 
+const BREATHING_STATE = {
+  IN: "IN",
+  HOLD: "HOLD",
+  OUT: "OUT"
+};
+
+// const BREATHE_IN_TEXT = "breathe in";
+// const BREATHE_HOLD_TEXT = "hold";
+// const BREATHE_OUT_TEXT = "breathe out";
+
 export default {
   name: "BreathingGuide",
+  data() {
+    return {
+      breathingState: BREATHING_STATE.IN
+    };
+  },
+  computed: {
+    BREATHING_STATE: () => BREATHING_STATE
+  },
   mounted() {
     var tl = new TimelineMax({ repeat: -1 });
+    this.tl = tl;
     // var tl = new TimelineMax();
     var breatheInDuration = 4;
     var breatheHoldDuration = 2;
@@ -122,31 +148,25 @@ export default {
     var breatheHoldEndAngle =
       ((breatheInDuration + breatheHoldDuration) / totalDuration) * 360;
 
-    // tl.add("expansion",0)
-    // tl.to("#circle-svg", 4, {
-    //   scale: 2
-    // }, "expansion");
-    // tl.to("#circle-svg", 4, {
-    //   scale: 1
-    // }, "expansion+=6");
-
     tl.add("gradient", 0);
     tl.to("#circle3", 5, { fillOpacity: 1 }, "gradient");
     tl.to("#circle3", 5, { fillOpacity: 0 }, "gradient+=5");
 
     tl.add("text", 0);
-    // tl.to(".circle-text", 4, { scale: 2}, "text");
-    // tl.to(".circle-text", 4, {
-    //   scale: 1
-    // }, "text+=6");
-    tl.addCallback(function() {
-      document.querySelectorAll(".text")[0].innerHTML = "breathe in";
+    tl.addCallback(() => {
+      // this.text = BREATHE_IN_TEXT;
+      this.breathingState = BREATHING_STATE.IN;
+      // document.querySelectorAll(".text")[0].innerHTML = "breathe in";
     }, "text");
-    tl.addCallback(function() {
-      document.querySelectorAll(".text")[0].innerHTML = "hold";
+    tl.addCallback(() => {
+      // document.querySelectorAll(".text")[0].innerHTML = "hold";
+      // this.text = BREATHE_HOLD_TEXT;
+      this.breathingState = BREATHING_STATE.HOLD;
     }, "text+=4");
-    tl.addCallback(function() {
-      document.querySelectorAll(".text")[0].innerHTML = "breathe out";
+    tl.addCallback(() => {
+      // document.querySelectorAll(".text")[0].innerHTML = "breathe out";
+      // this.text = BREATHE_OUT_TEXT;
+      this.breathingState = BREATHING_STATE.OUT;
     }, "text+=6");
 
     // Dial
@@ -230,6 +250,10 @@ export default {
     // tl.to(".progress", 4, {
     //   scale: 1
     // }, "dialTrackExpansion+=6");
+  },
+  beforeDestroy() {
+    this.tl.kill();
+    this.tl = null;
   }
 };
 </script>

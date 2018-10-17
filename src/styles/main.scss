@@ -50,3 +50,16 @@ $navigation-height: 160px; // Approximate
 .route-leave-to {
   opacity: 0;
 }
+
+//
+// Shared Transitions
+//
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s $swift-ease-out-timing-function;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
