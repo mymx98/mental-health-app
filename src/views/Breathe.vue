@@ -1,6 +1,6 @@
 <template>
   <div class='Breathe'>
-    <ChevronLeft class='Breathe__back-icon' />
+    <!-- <ChevronLeft class='Breathe__back-icon' />
     <div class='Breathe__time-elapsed'>
       {{ formattedTimeElapsed }}
     </div>
@@ -11,17 +11,20 @@
     <button type='button'
             @click='stop'>
       Stop
-    </button>
+    </button> -->
+    <BreathingGuide />
   </div>
 </template>
 
 <script>
 import ChevronLeft from "@/assets/icons/ChevronLeft.svg";
+import BreathingGuide from "@/components/BreathingGuide";
 
 export default {
   name: "Breathe",
   components: {
-    ChevronLeft
+    ChevronLeft,
+    BreathingGuide
   },
   props: {
     interval: {
