@@ -11,7 +11,7 @@ export default {
             description: "Music Description",
             duration: 3600,
             mediaSrc:
-              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-07.mp3",
+              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-20.mp3",
             imgSrc: "https://i.imgur.com/jHdJbVl.jpg"
           },
           {
@@ -22,7 +22,7 @@ export default {
             description: "Music Description",
             duration: 3000,
             mediaSrc:
-              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-08.mp3",
+              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-27.mp3",
             imgSrc: "https://i.imgur.com/TwuG22H.jpg"
           },
           {
@@ -33,7 +33,7 @@ export default {
             description: "Music Description",
             duration: 2000,
             mediaSrc:
-              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-09.mp3",
+              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-28.mp3",
             imgSrc: "https://i.imgur.com/rsPdxeg.jpg"
           },
           {
@@ -44,7 +44,7 @@ export default {
             description: "Music Description",
             duration: 2400,
             mediaSrc:
-              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-10.mp3",
+              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-29.mp3",
             imgSrc: "https://i.imgur.com/muueGm3.jpg"
           },
           {
@@ -55,7 +55,7 @@ export default {
             description: "Music Description",
             duration: 1200,
             mediaSrc:
-              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-11.mp3",
+              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-30.mp3",
             imgSrc: "https://i.imgur.com/fe3NEY4.jpg"
           },
           {
@@ -66,7 +66,7 @@ export default {
             description: "Music Description",
             duration: 1600,
             mediaSrc:
-              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-12.mp3",
+              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-31.mp3",
             imgSrc: "https://i.imgur.com/ye3eyys.jpg"
           }
         ]

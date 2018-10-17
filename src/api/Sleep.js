@@ -19,7 +19,7 @@ export default {
               "https://randomuser.me/api/portraits/women/74.jpg",
             duration: 1000,
             mediaSrc:
-              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-01.mp3",
+              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-21.mp3",
             imgSrc: "https://i.imgur.com/ubAXme5.jpg"
           },
           {
@@ -34,7 +34,7 @@ export default {
               "https://randomuser.me/api/portraits/men/35.jpg",
             duration: 1500,
             mediaSrc:
-              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-02.mp3",
+              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-22.mp3",
             imgSrc: "https://i.imgur.com/ospZv7f.jpg"
           },
           {
@@ -49,7 +49,7 @@ export default {
               "https://randomuser.me/api/portraits/women/57.jpg",
             duration: 2100,
             mediaSrc:
-              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-03.mp3",
+              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-23.mp3",
             imgSrc: "https://i.imgur.com/tCc6mkh.jpg"
           },
           {
@@ -64,7 +64,7 @@ export default {
               "https://randomuser.me/api/portraits/women/16.jpg",
             duration: 700,
             mediaSrc:
-              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-04.mp3",
+              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-24.mp3",
             imgSrc: "https://i.imgur.com/eE0qUlv.jpg"
           },
           {
@@ -79,7 +79,7 @@ export default {
               "https://randomuser.me/api/portraits/men/67.jpg",
             duration: 1200,
             mediaSrc:
-              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-05.mp3",
+              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-25.mp3",
             imgSrc: "https://i.imgur.com/wYjZAfP.jpg"
           },
           {
@@ -94,7 +94,7 @@ export default {
               "https://randomuser.me/api/portraits/women/60.jpg",
             duration: 1600,
             mediaSrc:
-              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-06.mp3",
+              "https://s3.amazonaws.com/christianreyco/projects/calm-app-vue/calm-26.mp3",
             imgSrc: "https://i.imgur.com/Om5JAZy.jpg"
           }
         ]
