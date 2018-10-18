@@ -264,7 +264,6 @@ export default {
   $breathe-in-track-color: #387ad7;
   $breathe-hold-track-color: #69757f;
   $breathe-out-track-color: #7944e7;
-
   $a-track-size: 3px;
   $a-track-gap: 10px;
   $full-circumference: 339.292;
@@ -275,49 +274,18 @@ export default {
   $breathe-in-factor: $breathe-in-time / $total-duration;
   $breathe-out-factor: $breathe-out-time / $total-duration;
 
-  .progress {
-    position: absolute;
-    stroke: #69757f;
-    // stroke: #3777D4;
-
-    top: -($a-track-size + $a-track-gap);
-    left: -($a-track-size + $a-track-gap);
-    width: 100px + 2 * ($a-track-size + $a-track-gap);
-    height: 100px + 2 * ($a-track-size + $a-track-gap);
-    // transform: rotate(-90deg);
-    stroke-width: $a-track-size;
-  }
-
-  .progress__breathe-in-container {
-    transform: rotate(-90deg);
-  }
-  .progress__breathe-in {
-    stroke: #3777d4;
-    stroke-dasharray: 339.292;
-    stroke-dashoffset: (1-$breathe-in-factor) * $full-circumference;
-    stroke-width: $a-track-size;
-  }
-
-  .progress__breathe-out-container {
-    transform: rotate(-#{$breathe-out-factor * 360 + 90}deg);
-  }
-  .progress__breathe-out {
-    stroke: $breathe-out-track-color;
-    stroke-dasharray: 339.292;
-    stroke-dashoffset: (1-$breathe-out-factor) * $full-circumference;
-    stroke-width: $a-track-size;
-  }
-
   .scene {
+    width: $circle-size;
+    height: $circle-size;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    // height: 100%;
   }
 
   .circle-container {
     position: relative;
+    width: $circle-size;
+    height: $circle-size;
     box-sizing: border-box;
   }
 
@@ -330,12 +298,12 @@ export default {
     position: absolute;
     height: $dial-container-size;
     width: $dial-container-size;
-    // border: 1px solid blue;
     box-sizing: border-box;
     left: 0px;
     top: 0px;
   }
   .dial-track {
+    position: absolute;
     width: $dial-container-size + $dial-track-size * 2 + $dial-gap * 2;
     height: $dial-container-size + $dial-track-size * 2 + $dial-gap * 2;
     left: -$dial-track-size - $dial-gap;
@@ -343,7 +311,6 @@ export default {
     border: $dial-track-size solid red;
     border-radius: 100%;
     box-sizing: border-box;
-    position: absolute;
   }
   .dial {
     position: absolute;
@@ -381,6 +348,39 @@ export default {
 
   #circle3 {
     fill-opacity: 0;
+  }
+
+  .progress {
+    position: absolute;
+    stroke: #69757f;
+    // stroke: #3777D4;
+
+    top: -($a-track-size + $a-track-gap);
+    left: -($a-track-size + $a-track-gap);
+    width: 100px + 2 * ($a-track-size + $a-track-gap);
+    height: 100px + 2 * ($a-track-size + $a-track-gap);
+    // transform: rotate(-90deg);
+    stroke-width: $a-track-size;
+  }
+
+  .progress__breathe-in-container {
+    transform: rotate(-90deg);
+  }
+  .progress__breathe-in {
+    stroke: #3777d4;
+    stroke-dasharray: 339.292;
+    stroke-dashoffset: (1-$breathe-in-factor) * $full-circumference;
+    stroke-width: $a-track-size;
+  }
+
+  .progress__breathe-out-container {
+    transform: rotate(-#{$breathe-out-factor * 360 + 90}deg);
+  }
+  .progress__breathe-out {
+    stroke: $breathe-out-track-color;
+    stroke-dasharray: 339.292;
+    stroke-dashoffset: (1-$breathe-out-factor) * $full-circumference;
+    stroke-width: $a-track-size;
   }
 }
 </style>
