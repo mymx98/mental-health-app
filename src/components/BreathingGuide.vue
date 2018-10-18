@@ -127,6 +127,12 @@ const BREATHING_STATE = {
 
 export default {
   name: "BreathingGuide",
+  props: {
+    playingState: {
+      type: String,
+      default: "playing" // or 'paused',
+    }
+  },
   data() {
     return {
       breathingState: BREATHING_STATE.IN
@@ -134,6 +140,15 @@ export default {
   },
   computed: {
     BREATHING_STATE: () => BREATHING_STATE
+  },
+  watch: {
+    playingState(val) {
+      if (val === "playing") {
+        this.tl.play();
+      } else {
+        this.tl.pause();
+      }
+    }
   },
   mounted() {
     var tl = new TimelineMax({ repeat: -1 });

@@ -11,27 +11,27 @@
         <Settings class='Breathe__settings-icon' />
       </div>
     </div>
-    <!-- <ChevronLeft class='Breathe__back-icon' />
-    <div class='Breathe__time-elapsed'>
-      {{ formattedTimeElapsed }}
-    </div>
-    <button type='button'
-            @click='start'>
-      Start
-    </button>
-    <button type='button'
-            @click='stop'>
-      Stop
-    </button> -->
     <div class='Breathe__guide-container'>
-      <BreathingGuide />
+      <div class='Breathe__guide-inner'>
+        <BreathingGuide :playingState='playingState' />
+        <div class='Breathe__controls'>
+          <Pause class='Breathe__player-icon'
+                 @click.native='togglePlayingState' />
+        </div>
+      </div>
     </div>
+    <!-- <div class='Breathe__controls'>
+      <Pause class='Breathe__settings-icon'
+             @click.native='togglePlayingState' />
+    </div> -->
   </div>
 </template>
 
 <script>
 import ChevronLeft from "@/assets/icons/ChevronLeft.svg";
 import Settings from "@/assets/icons/Settings.svg";
+import Pause from "@/assets/icons/Pause.svg";
+import Play from "@/assets/icons/Play.svg";
 import BreathingGuide from "@/components/BreathingGuide";
 
 export default {
@@ -39,6 +39,8 @@ export default {
   components: {
     ChevronLeft,
     Settings,
+    Play,
+    Pause,
     BreathingGuide
   },
   props: {
@@ -49,7 +51,8 @@ export default {
   },
   data() {
     return {
-      timeElapsed: 0
+      timeElapsed: 0,
+      playingState: "playing"
     };
   },
   computed: {
@@ -58,6 +61,14 @@ export default {
     }
   },
   methods: {
+    togglePlayingState() {
+      console.log("togglePlayingState");
+      if (this.playingState === "playing") {
+        this.playingState = "paused";
+      } else {
+        this.playingState = "playing";
+      }
+    },
     increment() {
       this.timeElapsed += this.interval;
     },
@@ -96,6 +107,32 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  &__guide-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &__controls {
+    margin-top: 100px;
+    text-align: center;
+    z-index: 10000;
+    border: 1px solid $color-white;
+    border-radius: 100%;
+    width: 72px;
+    height: 72px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__player-icon {
+    width: 48px;
+    height: 48px;
+    stroke: $color-white;
   }
 
   &__icon-wrapper {
