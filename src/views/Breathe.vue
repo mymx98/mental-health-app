@@ -2,7 +2,8 @@
   <div class='Breathe'>
     <div class='Breathe__header'>
       <button class='Breathe__icon-wrapper button--no-style'
-              type='button'>
+              type='button'
+              @click='back'>
         <ChevronLeft class='Breathe__back-icon' />
       </button>
       <div class='Breathe__timer'>
@@ -109,14 +110,19 @@ export default {
     stop() {
       clearInterval(this.timer);
       this.timer = null;
+    },
+    back() {
+      this.$router.push({ name: "More" });
     }
   },
   created() {
     this.startTimer();
+    this.$store.dispatch("navigationVisible", false);
   },
   beforeDestroy() {
     clearInterval(this.timer);
     this.timer = null;
+    this.$store.dispatch("navigationVisible", true);
   }
 };
 </script>
