@@ -6,13 +6,20 @@ function pad(val, size) {
   return s;
 }
 
-export function formattedTimeStamp(timeInSeconds = 0) {
+export function formattedTimeStamp(
+  timeInSeconds = 0,
+  { startAtZero = false } = {}
+) {
   if (timeInSeconds) {
     const minutes = pad(Math.floor(timeInSeconds / 60), 2);
     const seconds = pad(Math.floor(timeInSeconds % 60), 2);
 
     return `${minutes}:${seconds}`;
   } else {
-    return "--:--";
+    if (startAtZero) {
+      return "00:00";
+    } else {
+      return "--:--";
+    }
   }
 }

@@ -35,6 +35,7 @@ import Settings from "@/assets/icons/Settings.svg";
 import Pause from "@/assets/icons/Pause.svg";
 import Play from "@/assets/icons/Play.svg";
 import BreathingGuide from "@/components/BreathingGuide";
+import { formattedTimeStamp } from "@/services/TimestampFormatting";
 
 export default {
   name: "Breathe",
@@ -62,14 +63,12 @@ export default {
   },
   computed: {
     effectiveTimeElapsed() {
-      // const now = new Date().getTime();
-
-      // return now - this.startTime - this.timeElapsedAtLastPause;
       return this.timeElapsed - this.totalTimePaused;
     },
     formattedTimeElapsed() {
-      // return Math.round(this.timeElapsed / 1000);
-      return Math.round(this.effectiveTimeElapsed / 1000);
+      return formattedTimeStamp(Math.round(this.effectiveTimeElapsed / 1000), {
+        startAtZero: true
+      });
     }
   },
   methods: {
@@ -84,15 +83,11 @@ export default {
     },
     updateTimeElapsed() {
       const now = new Date().getTime();
-      console.log(
-        "updateTimeElapsed",
-        now,
-        this.startTime,
-        this.lastPauseTime,
-        (now - this.startTime) / 1000,
-        this.timeElapsedAtLastPause / 1000
-      );
       this.timeElapsed = now - this.startTime;
+    },
+    updateTotalTimePaused() {
+      const now = new Date().getTime();
+      this.totalTimePaused += now - this.timeAtLastPause;
     },
     pauseTimer() {
       this.timeAtLastPause = new Date().getTime();
@@ -108,7 +103,7 @@ export default {
           this.timeUpdateInterval
         );
         this.updateTimeElapsed();
-        this.totalTimePaused += new Date().getTime() - this.timeAtLastPause;
+        this.updateTotalTimePaused();
       }
     },
     stop() {
