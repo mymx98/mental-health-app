@@ -1,29 +1,31 @@
 <template>
   <div class='Breathe'>
     <div class='Breathe__header'>
-      <div class='Breathe__icon-wrapper'>
+      <button class='Breathe__icon-wrapper button--no-style'
+              type='button'>
         <ChevronLeft class='Breathe__back-icon' />
-      </div>
+      </button>
       <div class='Breathe__timer'>
         0:07
       </div>
-      <div class='Breathe__icon-wrapper'>
+      <button class='Breathe__icon-wrapper button--no-style'
+              type='button'>
         <Settings class='Breathe__settings-icon' />
-      </div>
+      </button>
     </div>
     <div class='Breathe__guide-container'>
       <div class='Breathe__guide-inner'>
         <BreathingGuide :playingState='playingState' />
-        <div class='Breathe__controls'>
-          <Pause class='Breathe__player-icon'
-                 @click.native='togglePlayingState' />
-        </div>
+        <button class='Breathe__controls button--no-style'
+                type='button'
+                @click='togglePlayingState'>
+          <Pause v-if='playingState === "playing"'
+                 class='Breathe__player-icon' />
+          <Play v-else
+                class='Breathe__player-icon Breathe__play-icon' />
+        </button>
       </div>
     </div>
-    <!-- <div class='Breathe__controls'>
-      <Pause class='Breathe__settings-icon'
-             @click.native='togglePlayingState' />
-    </div> -->
   </div>
 </template>
 
@@ -99,11 +101,8 @@ export default {
   }
 
   &__guide-container {
-    position: absolute;
     width: 100%;
-    height: 100vh;
-    top: 0;
-    left: 0;
+    height: calc(100vh - 80px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,7 +116,7 @@ export default {
   }
 
   &__controls {
-    margin-top: 100px;
+    margin-top: 120px;
     text-align: center;
     z-index: 10000;
     border: 1px solid $color-white;
@@ -127,6 +126,18 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    // TODO: this is shared with media player styles
+    transition: $swift-ease-out;
+    transition-property: stroke, transform;
+
+    &:hover {
+      transform: scale(1.1);
+
+      svg {
+        stroke: darken($color-white, 10%);
+      }
+    }
   }
 
   &__player-icon {
@@ -137,12 +148,27 @@ export default {
 
   &__icon-wrapper {
     width: 56px;
+    // TODO: this is shared with media player styles
+    transition: $swift-ease-out;
+    transition-property: stroke, transform;
+
+    &:hover {
+      transform: scale(1.1);
+
+      svg {
+        stroke: darken($color-white, 10%);
+      }
+    }
   }
 
   &__back-icon {
     width: 48px;
     height: 48px;
     fill: $color-white;
+  }
+
+  &__play-icon {
+    margin-left: 8px;
   }
 
   &__settings-icon {
