@@ -6,7 +6,7 @@
         <ChevronLeft class='Breathe__back-icon' />
       </button>
       <div class='Breathe__timer'>
-        0:07
+        {{ formattedTimeElapsed }}
       </div>
       <button class='Breathe__icon-wrapper button--no-style'
               type='button'>
@@ -46,43 +46,82 @@ export default {
     BreathingGuide
   },
   props: {
-    interval: {
+    timeUpdateInterval: {
       type: Number,
       default: 1000
     }
   },
   data() {
     return {
+      startTime: new Date().getTime(),
+      totalTimePaused: 0,
+      timeAtLastPause: new Date().getTime(),
       timeElapsed: 0,
       playingState: "playing"
     };
   },
   computed: {
+    effectiveTimeElapsed() {
+      // const now = new Date().getTime();
+
+      // return now - this.startTime - this.timeElapsedAtLastPause;
+      return this.timeElapsed - this.totalTimePaused;
+    },
     formattedTimeElapsed() {
-      return Math.round(this.timeElapsed / 1000);
+      // return Math.round(this.timeElapsed / 1000);
+      return Math.round(this.effectiveTimeElapsed / 1000);
     }
   },
   methods: {
     togglePlayingState() {
-      console.log("togglePlayingState");
       if (this.playingState === "playing") {
         this.playingState = "paused";
+        this.pauseTimer();
       } else {
         this.playingState = "playing";
+        this.startTimer();
       }
     },
-    increment() {
-      this.timeElapsed += this.interval;
+    updateTimeElapsed() {
+      const now = new Date().getTime();
+      console.log(
+        "updateTimeElapsed",
+        now,
+        this.startTime,
+        this.lastPauseTime,
+        (now - this.startTime) / 1000,
+        this.timeElapsedAtLastPause / 1000
+      );
+      this.timeElapsed = now - this.startTime;
     },
-    start() {
+    pauseTimer() {
+      this.timeAtLastPause = new Date().getTime();
+      if (this.timer) {
+        clearInterval(this.timer);
+      }
+      this.timer = null;
+    },
+    startTimer() {
       if (!this.timer) {
-        this.timer = setInterval(this.increment, this.interval);
+        this.timer = setInterval(
+          this.updateTimeElapsed,
+          this.timeUpdateInterval
+        );
+        this.updateTimeElapsed();
+        this.totalTimePaused += new Date().getTime() - this.timeAtLastPause;
       }
     },
     stop() {
       clearInterval(this.timer);
       this.timer = null;
     }
+  },
+  created() {
+    this.startTimer();
+  },
+  beforeDestroy() {
+    clearInterval(this.timer);
+    this.timer = null;
   }
 };
 </script>
