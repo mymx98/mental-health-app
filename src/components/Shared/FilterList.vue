@@ -38,7 +38,8 @@ export default {
 .FilterList {
   display: inline-flex;
   width: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
+  overflow-y: hidden;
   flex-wrap: nowrap;
 
   &__item {

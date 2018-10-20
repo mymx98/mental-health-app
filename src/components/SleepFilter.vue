@@ -93,14 +93,12 @@ export default {
 .SleepFilter {
   display: inline-flex;
   width: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
+  overflow-y: hidden;
   flex-wrap: nowrap;
 
   &__item {
     margin-right: 16px;
-    // border-radius: 9999px;
-    // background-color: $body-background-color;
-    // padding: 4px 12px;
   }
 }
 </style>

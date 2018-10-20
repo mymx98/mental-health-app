@@ -217,8 +217,7 @@ export default {
   &__media-info {
     flex: 1 0 auto; /* 2 */
     height: 200px;
-    overflow-y: scroll;
-    // height: calc(100vh - #{224px});
+    overflow-y: auto;
   }
 
   &__controls {
