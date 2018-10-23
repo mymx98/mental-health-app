@@ -1,12 +1,9 @@
 <template>
   <div class='Music navigation-gutter'>
     <div class='Music__header'>
-      <div class='Music__header-title app-gutter-spacing'>
+      <h2 class='app-gutter-spacing'>
         Music
-      </div>
-      <!-- <div class='Music__header-description app-gutter-spacing'>
-        Soothing betime stories to help youfall into a deep and natural Music.
-      </div> -->
+      </h2>
       <div class='Music__filter app-gutter-spacing'>
         <FilterList :list='filterList'
                     @filterClicked='filterClicked' />
@@ -120,21 +117,7 @@ export default {
     background-color: $body-background-color-secondary;
     padding: 24px 0;
     margin-bottom: 24px;
-  }
-
-  &__header-title {
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 200;
-    font-size: 1.6em;
-    margin-bottom: 24px;
     text-align: center;
-  }
-
-  &__header-description {
-    font-size: 1.1em;
-    text-align: center;
-    margin-bottom: 12px;
   }
 
   &__list {

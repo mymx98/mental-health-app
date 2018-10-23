@@ -1,12 +1,12 @@
 <template>
   <div class='Sleep navigation-gutter'>
     <div class='Sleep__header'>
-      <div class='Sleep__header-title app-gutter-spacing'>
+      <h2 class='app-gutter-spacing'>
         Sleep Stories
-      </div>
-      <div class='Sleep__header-description app-gutter-spacing'>
+      </h2>
+      <p class='Sleep__header-description app-gutter-spacing'>
         Soothing betime stories to help youfall into a deep and natural sleep.
-      </div>
+      </p>
       <div class='Sleep__filter app-gutter-spacing'>
         <SleepFilter />
       </div>
@@ -69,6 +69,7 @@ export default {
     background-color: $body-background-color-secondary;
     padding: 24px 0;
     margin-bottom: 24px;
+    text-align: center;
   }
 
   &__header-title {
@@ -78,12 +79,6 @@ export default {
     font-size: 1.6em;
     margin-bottom: 24px;
     text-align: center;
-  }
-
-  &__header-description {
-    font-size: 1.1em;
-    text-align: center;
-    margin-bottom: 12px;
   }
 
   &__list {
