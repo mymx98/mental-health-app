@@ -1,5 +1,6 @@
 <template>
   <button class='SceneCard button--no-style'
+          @click='select'
           :class='{"SceneCard--selected": selected}'
           type='button'>
     <Card class='SceneCard__card'
@@ -26,9 +27,8 @@ export default {
     Card
   },
   props: {
-    imgSrc: {
-      type: String,
-      default: ""
+    item: {
+      type: Object
     },
     selected: {
       type: Boolean,
@@ -38,8 +38,13 @@ export default {
   computed: {
     cardStyles() {
       return {
-        backgroundImage: `url('${this.imgSrc}'`
+        backgroundImage: `url('${this.item.imgSrc}'`
       };
+    }
+  },
+  methods: {
+    select() {
+      this.$emit("select", this.item, this.$el);
     }
   }
 };
@@ -49,7 +54,7 @@ export default {
 @import "@/styles/variables.scss";
 
 $aspect-ratio: 1.8;
-$width: 150px;
+$width: 75px;
 
 .SceneCard {
   width: inherit;
@@ -70,6 +75,11 @@ $width: 150px;
     background-position: center;
     width: $width;
     height: $aspect-ratio * $width;
+
+    @media only screen and (min-width: 768px) {
+      width: 200px;
+      height: $aspect-ratio * 200px;
+    }
   }
 
   &__mask {

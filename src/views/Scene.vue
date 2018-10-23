@@ -5,19 +5,17 @@
         Scenes
       </h2>
     </div>
-    <div>
+    <div class='Scene__list'
+         :style='listStyles'>
       <div class='Scene__item'
            v-for='item in list'
            :key='item.id'>
-        <SceneCard :imgSrc='item.imgSrc'>
+        <SceneCard :item='item'
+                   :selected='item.selected'
+                   @select='select'>
           <span slot='title'>{{ item.title }}</span>
         </SceneCard>
       </div>
-      <!-- <SceneCard class='Scene__item'
-                 imgSrc='https://i.imgur.com/AVcklW7.jpg' />
-      <SceneCard class='Scene__item'
-                 imgSrc='https://i.imgur.com/fJ07qiG.jpg'
-                 selected /> -->
     </div>
   </div>
 </template>
@@ -33,8 +31,39 @@ export default {
   },
   data() {
     return {
-      list: []
+      list: [],
+      xOffset: 0
     };
+  },
+  computed: {
+    listStyles() {
+      return {
+        transform: `translateX(${this.xOffset}px)`
+      };
+    }
+  },
+  methods: {
+    select(item, $el) {
+      const rect = $el.getBoundingClientRect();
+      const x = rect.x;
+      const width = rect.width;
+      const itemCenterPosition = x + width / 2;
+      const viewportWidth =
+        window.innerWidth ||
+        document.documentElement.clientWidth ||
+        document.body.clientWidth;
+
+      if (itemCenterPosition < viewportWidth / 2) {
+        this.xOffset = this.xOffset + viewportWidth / 2 - itemCenterPosition;
+      } else if (itemCenterPosition > viewportWidth / 2) {
+        this.xOffset = this.xOffset - (itemCenterPosition - viewportWidth / 2);
+      }
+
+      this.list.forEach(a => {
+        a.selected = false;
+      });
+      item.selected = true;
+    }
   },
   async created() {
     const response = await Scenes.getScenes();
@@ -44,9 +73,17 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "@/styles/variables.scss";
+
 .Scene {
+  &__list {
+    display: flex;
+    flex-wrap: nowrap;
+    transition: $swift-ease-out;
+    transition-property: transform;
+  }
+
   &__item {
-    display: inline-block;
     margin-right: 16px;
   }
 }
