@@ -1,6 +1,6 @@
 <template>
   <div class='Music navigation-gutter'>
-    <div class='Music__header'>
+    <div class='app-header'>
       <h2 class='app-gutter-spacing'>
         Music
       </h2>
@@ -113,13 +113,6 @@ export default {
 @import "@/styles/variables.scss";
 
 .Music {
-  &__header {
-    background-color: $body-background-color-secondary;
-    padding: 24px 0;
-    margin-bottom: 24px;
-    text-align: center;
-  }
-
   &__list {
     display: flex;
     flex-wrap: wrap;

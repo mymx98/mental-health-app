@@ -1,6 +1,6 @@
 <template>
   <div class='Meditate navigation-gutter'>
-    <div class='Meditate__header'>
+    <div class='app-header'>
       <h2 class='app-gutter-spacing'>
         Meditate
       </h2>
@@ -114,13 +114,6 @@ export default {
 @import "@/styles/variables.scss";
 
 .Meditate {
-  &__header {
-    background-color: $body-background-color-secondary;
-    padding: 24px 0;
-    margin-bottom: 24px;
-    text-align: center;
-  }
-
   &__list {
     display: flex;
     flex-wrap: wrap;

@@ -76,6 +76,13 @@ p {
   padding: 0 24px 0 24px;
 }
 
+.app-header {
+  background-color: $body-background-color-secondary;
+  padding: 24px 0;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
 .button--no-style {
   display: block;
   background: none;

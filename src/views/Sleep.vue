@@ -1,6 +1,6 @@
 <template>
   <div class='Sleep navigation-gutter'>
-    <div class='Sleep__header'>
+    <div class='app-header'>
       <h2 class='app-gutter-spacing'>
         Sleep Stories
       </h2>
@@ -65,13 +65,6 @@ export default {
 @import "@/styles/variables.scss";
 
 .Sleep {
-  &__header {
-    background-color: $body-background-color-secondary;
-    padding: 24px 0;
-    margin-bottom: 24px;
-    text-align: center;
-  }
-
   &__header-title {
     text-transform: uppercase;
     letter-spacing: 2px;
