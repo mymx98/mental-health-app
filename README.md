@@ -4,6 +4,10 @@ Vue app inspired by the Calm Meditation App
 
 See live demo here! https://calm-app-vue.netlify.com
 
+- Vuex
+- Vue Router
+- GSAP for animations
+
 ![Calm App Track Selection](https://i.imgur.com/6AVXl6S.gif)
 
 ![Calm App Breathing Guide](https://i.imgur.com/5EpbcLD.gif)
