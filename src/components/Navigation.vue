@@ -17,6 +17,10 @@
                       label='Music'>
         <Music slot='icon' />
       </NavigationLink>
+      <NavigationLink :to="{ name: 'Breathe'}"
+                      label='Breathe'>
+        <Clock slot='icon' />
+      </NavigationLink>
       <NavigationLink :to="{ name: 'More'}"
                       label='More'>
         <hamburger slot='icon' />
@@ -32,6 +36,7 @@ import Moon from "@/assets/icons/Moon.svg";
 import Target from "@/assets/icons/Target.svg";
 import Music from "@/assets/icons/Music.svg";
 import Hamburger from "@/assets/icons/Hamburger.svg";
+import Clock from "@/assets/icons/Clock.svg";
 import TransitionSlideFromBottom from "@/components/Shared/TransitionSlideFromBottom";
 
 export default {
@@ -43,6 +48,7 @@ export default {
     Target,
     Music,
     Hamburger,
+    Clock,
     TransitionSlideFromBottom
   }
 };
