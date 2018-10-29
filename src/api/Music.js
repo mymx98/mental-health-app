@@ -8,6 +8,7 @@ export default {
             createdAt: 1538852003928,
             title: "Milky Way",
             category: "relax",
+            type: "music",
             description: "Music Description",
             duration: 3600,
             mediaSrc:
@@ -19,6 +20,7 @@ export default {
             createdAt: 1538852003928,
             title: "A Quiet Day",
             category: "relax",
+            type: "music",
             description: "Music Description",
             duration: 3000,
             mediaSrc:
@@ -30,6 +32,7 @@ export default {
             createdAt: 1538852003928,
             title: "Healing Piano",
             category: "relax",
+            type: "music",
             description: "Music Description",
             duration: 2000,
             mediaSrc:
@@ -41,6 +44,7 @@ export default {
             createdAt: 1538852003928,
             title: "Breathe Away",
             category: "relax",
+            type: "music",
             description: "Music Description",
             duration: 2400,
             mediaSrc:
@@ -52,6 +56,7 @@ export default {
             createdAt: 1538852003928,
             title: "Serendipity",
             category: "nature",
+            type: "music",
             description: "Music Description",
             duration: 1200,
             mediaSrc:
@@ -63,6 +68,7 @@ export default {
             createdAt: 1538852003928,
             title: "Sculpture",
             category: "nature",
+            type: "music",
             description: "Music Description",
             duration: 1600,
             mediaSrc:

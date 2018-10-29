@@ -19,6 +19,8 @@
           <div class='MediaPlayerContainer__media-info'>
             <MediaStoryInfo v-if='media.type === "story"'
                             :media='media' />
+            <MediaMusicInfo v-else-if='media.type === "music"'
+                            :media='media' />
           </div>
         </MediaPlayer>
 
@@ -40,6 +42,7 @@ import TransitionSlideFromBottom from "@/components/Shared/TransitionSlideFromBo
 import MediaPlayer from "@/components/MediaPlayer";
 import MediaPlayerMinimized from "@/components/MediaPlayerMinimized";
 import MediaStoryInfo from "@/components/MediaStoryInfo";
+import MediaMusicInfo from "@/components/MediaMusicInfo";
 
 export default {
   name: "MediaPlayerContainer",
@@ -47,6 +50,7 @@ export default {
     MediaPlayer,
     MediaPlayerMinimized,
     MediaStoryInfo,
+    MediaMusicInfo,
     TransitionSlideFromBottom
   },
   props: {
