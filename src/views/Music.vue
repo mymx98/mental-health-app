@@ -20,9 +20,8 @@
                        @click.native='itemClicked(item)' />
       </div>
     </div>
-    <MediaPlayerContainer :visible='playerVisible'
-                          :media='media'
-                          @close='closePlayer'>
+    <MediaPlayerContainer :media='media'
+                          @close='media = null'>
       Music
     </MediaPlayerContainer>
   </div>
@@ -75,8 +74,7 @@ export default {
           active: false
         }
       ],
-      list: [],
-      playerVisible: false
+      list: []
     };
   },
   methods: {
@@ -85,23 +83,10 @@ export default {
       item.active = true;
     },
     itemClicked(item) {
-      this.$store.dispatch("navigationVisible", false);
-      this.playerVisible = true;
       this.media = item;
-      this.$store.dispatch("blur", true);
-    },
-    closePlayer() {
-      this.$store.dispatch("blur", false);
-      this.playerVisible = false;
-      this.media = null;
-      this.$store.dispatch("navigationVisible", true);
-      // this.$store.dispatch("mediaPlayerVisible", true);
     }
   },
   async created() {
-    // const response = await Music.getMusicStories();
-
-    // this.list = response.data.data;
     const result = await Music.getMusicTracks();
 
     this.list = result.data.data;
