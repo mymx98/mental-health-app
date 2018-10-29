@@ -5,19 +5,21 @@
           raised
           zoomable
           translucent>
-      <div class='CardLinkPlain__category'>
-        <Sun class='CardLinkPlain__category-icon' />
-      </div>
-      <div class='CardLinkPlain__content'>
-        <div class='CardLinkPlain__title'>
-          {{ title }}
+      <div class='CardLinkPlain__wrapper'>
+        <div class='CardLinkPlain__category'>
+          <Sun class='CardLinkPlain__category-icon' />
         </div>
-        <div class='CardLinkPlain__subtitle'>
-          {{ subtitle }}
+        <div class='CardLinkPlain__content'>
+          <div class='CardLinkPlain__title'>
+            {{ title }}
+          </div>
+          <div class='CardLinkPlain__subtitle'>
+            {{ subtitle }}
+          </div>
         </div>
-      </div>
-      <div class='CardLinkPlain__action'>
-        <Play class='CardLinkPlain__action-icon' />
+        <div class='CardLinkPlain__action'>
+          <Play class='CardLinkPlain__action-icon' />
+        </div>
       </div>
     </Card>
   </router-link>
@@ -52,9 +54,11 @@ export default {
 @import "@/styles/variables.scss";
 
 .CardLinkPlain {
-  padding: 16px;
-  display: flex;
-  align-items: center;
+  &__wrapper {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+  }
 
   &__link {
     text-decoration: none;
