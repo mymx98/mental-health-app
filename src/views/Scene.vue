@@ -65,9 +65,12 @@ export default {
       item.selected = true;
     }
   },
-  async created() {
+  async mounted() {
     const response = await Scenes.getScenes();
     this.list = response.data.data;
+    // if (this.list.length) {
+    // this.select(this.length)
+    // }
   }
 };
 </script>
