@@ -9,17 +9,17 @@
                       label='Sleep'>
         <Moon slot='icon' />
       </NavigationLink>
-      <NavigationLink :to="{ name: 'Meditate'}"
+      <!-- <NavigationLink :to="{ name: 'Meditate'}"
                       label='Meditate'>
         <Target slot='icon' />
+      </NavigationLink> -->
+      <NavigationLink :to="{ name: 'Breathe'}"
+                      label='Breathe'>
+        <Clock slot='icon' />
       </NavigationLink>
       <NavigationLink :to="{ name: 'Music'}"
                       label='Music'>
         <Music slot='icon' />
-      </NavigationLink>
-      <NavigationLink :to="{ name: 'Breathe'}"
-                      label='Breathe'>
-        <Clock slot='icon' />
       </NavigationLink>
       <NavigationLink :to="{ name: 'More'}"
                       label='More'>
