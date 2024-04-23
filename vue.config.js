@@ -1,7 +1,18 @@
 const DefinePlugin = require("webpack").DefinePlugin;
+const sass = require("sass");
 
 module.exports = {
   lintOnSave: false,
+  css: {
+    loaderOptions: {
+      sass: {
+        implementation: sass
+      },
+      scss: {
+        implementation: sass
+      }
+    }
+  },
   configureWebpack: {
     plugins: [
       new DefinePlugin({

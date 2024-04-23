@@ -41,7 +41,7 @@ export default {
 .Home {
   // height: 100%;
   height: 100vh;
-  background-image: url("https://i.imgur.com/AVcklW7.jpg");
+  background-image: url("~@/assets/sonder_background.jpg");
   background-size: cover;
   background-position: center;
 

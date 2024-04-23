@@ -2,10 +2,13 @@
   <div class='BreathingGuide'>
     <div class='scene'>
       <div class='circle-container'>
+        <!-- SVG element can contain element such as shapes, text, images, etc.-->
+        <!-- SVG element with width and height of 120 units, defines coordinate system of 120 by 120 units -->
         <svg class="progress"
              width="120"
              height="120"
              viewBox="0 0 120 120">
+          <!-- Circle, center at coordinates (60, 60), a radius of 54 units and no fill color i.e. visible --> 
           <circle cx="60"
                   cy="60"
                   r="54"
