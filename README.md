@@ -19,6 +19,8 @@ See live demo here! https://calm-app-vue.netlify.com
 ```
 npm install
 ```
+Note: updated node-sass 4.9.0 to sass 1.75.0 (uupdated vue.config.js to implement sass)
+
 
 ### Compiles and hot-reloads for development
 
