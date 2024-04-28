@@ -58,6 +58,7 @@ export default {
 @import "@/styles/variables.scss";
 
 .App {
+  background-image: url("~@/assets/sonder_background.jpg");
   height: 100%;
 
   &__content {

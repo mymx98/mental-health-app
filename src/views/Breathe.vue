@@ -159,7 +159,7 @@ export default {
     margin-top: 120px;
     text-align: center;
     z-index: 10000;
-    border: 1px solid $color-white;
+    border: 1px solid $color-grey;
     border-radius: 100%;
     width: 72px;
     height: 72px;
@@ -175,7 +175,7 @@ export default {
       transform: scale(1.1);
 
       svg {
-        stroke: darken($color-white, 10%);
+        stroke: lighten($color-grey, 10%);
       }
     }
   }
@@ -183,7 +183,7 @@ export default {
   &__player-icon {
     width: 48px;
     height: 48px;
-    stroke: $color-white;
+    stroke: $color-grey;
   }
 
   &__icon-wrapper {
@@ -196,7 +196,7 @@ export default {
       transform: scale(1.1);
 
       svg {
-        stroke: darken($color-white, 10%);
+        stroke: lighten($color-grey, 10%);
       }
     }
   }
@@ -204,7 +204,7 @@ export default {
   &__back-icon {
     width: 48px;
     height: 48px;
-    fill: $color-white;
+    fill: lighten($color-grey, 10%);
   }
 
   &__play-icon {
@@ -215,11 +215,12 @@ export default {
     width: 40px;
     height: 40px;
     padding: 6px;
-    stroke: $color-white;
+    stroke: lighten($color-grey, 10%);
   }
 
   &__timer {
     font-size: 1.6em;
+    color: lighten($color-grey, 10%);
   }
 }
 </style>

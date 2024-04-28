@@ -1,9 +1,7 @@
 <template>
   <div class="Home">
     <div class='Home__app-logo-wrapper'>
-      <img alt="App Logo"
-           src="@/assets/app-logo.png"
-           class='Home__app-logo' />
+      Sonder
     </div>
     <div class='Home__content app-gutter-spacing'>
       <GuidedSessionList :list='list' />
@@ -38,10 +36,15 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@font-face {
+  font-family: 'Barlow';
+  src: url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 .Home {
   // height: 100%;
   height: 100vh;
-  background-image: url("~@/assets/sonder_background.jpg");
   background-size: cover;
   background-position: center;
 
@@ -49,6 +52,10 @@ export default {
     text-align: center;
     padding-top: 24px;
     padding-bottom: 24px;
+    font-size: 48px;
+    color: #6C9286;
+    font-weight: bold;
+    font-family: 'Barlow', sans-serif;
   }
 
   &__app-logo {

@@ -98,7 +98,7 @@ $navigation-link-spacing: $navigation-link-size * 0.25;
 
   &__chevron {
     stroke: none;
-    fill: $color-white;
+    fill: $color-grey;
     margin-left: auto;
   }
 }

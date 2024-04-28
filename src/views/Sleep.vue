@@ -5,7 +5,7 @@
         Sleep Stories
       </h2>
       <p class='Sleep__header-description app-gutter-spacing'>
-        Soothing betime stories to help youfall into a deep and natural sleep.
+        Soothing bedtime stories to help you fall into a deep and natural sleep.
       </p>
       <div class='Sleep__filter app-gutter-spacing'>
         <SleepFilter />
