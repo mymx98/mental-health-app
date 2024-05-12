@@ -15,6 +15,11 @@ export default new Router({
       component: () => import("./views/Home.vue")
     },
     {
+      path: "/sleep2",
+      name: "Sleep2",
+      component: () => import("./views/Sleep2.vue")
+    },        
+    {
       path: "/intro",
       name: "Intro",
       component: () => import("./views/Intro.vue")
